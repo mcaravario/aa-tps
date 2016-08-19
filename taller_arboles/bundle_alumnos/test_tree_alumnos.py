@@ -1,4 +1,4 @@
-from tree_aa import *
+from tree_aa_alumnos import *
 import pylab
 
 # Armamos dataset tennis 
