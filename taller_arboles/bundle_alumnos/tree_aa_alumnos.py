@@ -7,17 +7,18 @@ from itertools import groupby
 def log2(v): return np.log(v)/np.log(2)
 
 def entropy(y): 
-    y.sort()
-    pk = [len(list(group))/len(y) for key, group in groupby(y)]
+    y_sorted = sorted(y)
+    pk = [float(len(list(group)))/len(y_sorted) for key, group in groupby(y_sorted)]
     return st.entropy(pk)
 
 def information_gain(column,y):
     hs = entropy(y)
     suma = 0
-    atrs_val = [len(list(group)) for key, group in groupby(column)]
+    col_sorted = sorted(column)
+    atrs_val = [key for key, group in groupby(col_sorted)]
     for a in atrs_val:
-        sv = [y_i for (c_i, y_i) in zip(column,y) if c_i==a]
-        suma+=(len(sv)/len(y))*entropy(sv)
+    	sv = [y_i for (c_i, y_i) in zip(column,y) if c_i==a]
+        suma+=float(len(sv))/len(y)*entropy(sv)
     return hs - suma
 
 class DecisionTree():
