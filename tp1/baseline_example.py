@@ -1,6 +1,6 @@
+#!/usr/bin/python
 # Aprendizaje Automatico - DC, FCEN, UBA
 # Segundo cuatrimestre 2016
-
 import json
 import numpy as np
 import pandas as pd
