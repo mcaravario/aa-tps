@@ -1,0 +1,5 @@
+('Total emails classified:', 45000)
+('Score:', 0.97467791276212468)
+Confusion matrix:
+[[21999   501]
+ [  634 21866]]
