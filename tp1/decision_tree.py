@@ -16,8 +16,8 @@ from collections import Counter
 # Leo los mails (poner los paths correctos).
 # ham_raw= json.load(open('./data/ham_txt.json'))
 # spam_raw= json.load(open('./data/spam_txt.json'))
-ham_txt= json.load(open('./data/ham_txt.json'))
-spam_txt= json.load(open('./data/spam_txt.json'))
+ham_txt= json.load(open('./data/ham_dev.json'))
+spam_txt= json.load(open('./data/spam_dev.json'))
 
 # # Imprimo un mail de ham y spam como muestra.
 # print ham_txt[0]
