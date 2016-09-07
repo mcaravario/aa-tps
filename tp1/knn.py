@@ -10,13 +10,23 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.grid_search import GridSearchCV
 from nltk import word_tokenize, WordNetLemmatizer
 from nltk.corpus import stopwords
 from collections import Counter
 
+
 # Leo los mails (poner los paths correctos).)
-ham_txt= json.load(open('./data/ham_dev.json'))
-spam_txt= json.load(open('./data/spam_dev.json'))
+ham_txt = json.load(open('./data/ham_dev.json'))
+spam_txt = json.load(open('./data/spam_dev.json'))
+
+# Me quedo con la mitad del dataset para entrenar
+ham_txt_train = ham_txt[:len(ham_txt)/2]
+spam_txt_train = spam_txt[:len(spam_txt)/2]
+
+# Me quedo con la mitad del dataset para testear
+ham_txt_test = ham_txt[len(ham_txt)/2 + 1:]
+spam_txt_test = spam_txt[len(ham_txt)/2 + 1:]
 
 ################ Forma de plotear los graficos de KNN ##########################
 # import numpy as np
@@ -66,6 +76,7 @@ spam_txt= json.load(open('./data/spam_dev.json'))
 # plt.show()
 
 ################################################################################
+
 # Armo un dataset de Pandas
 # http://pandas.pydata.org/
 df = pd.DataFrame(ham_txt+spam_txt, columns=['text'])
@@ -73,30 +84,34 @@ df['class'] = ['ham' for _ in range(len(ham_txt))]+['spam' for _ in range(len(sp
 
 # Preparo data para clasificar
 y = df['class']
-
-# Elijo mi clasificador.
-clf = KNeighborsClassifier(n_neighbors=5, weights="uniform")
+X = df['text']
 
 pipeline = Pipeline([
 	('count_vectorizer',	CountVectorizer(max_features=100)),
-	('classifier', 			clf) ])
+	('classifier', 			KNeighborsClassifier()) ])
 
-k_fold = KFold(n=len(df), n_folds=10, shuffle=True)
-scores = []
-confusion = np.array([[0, 0], [0, 0]])
-for train_indices, test_indices in k_fold:
-    train_text = df.iloc[train_indices]['text'].values
-    train_y = df.iloc[train_indices]['class'].values.astype(str)
+print "Creo pipeline"
 
-    test_text = df.iloc[test_indices]['text'].values
-    test_y = df.iloc[test_indices]['class'].values.astype(str)
+# Configuracion de Grid search
+param_grid = {"n_neighbors": [1, 3, 5, 7, 10],
+              "weights": ["uniform", "distance"]}
+grid_search = GridSearchCV(pipeline, n_jobs=3, scoring="f1", cv=10, param_grid=param_grid, verbose=5)
+grid_search.fit(X, y)
+print "Termine de entrenar"
+parameters = grid_search.best_params_
+print parameters
 
-    pipeline.fit(train_text, train_y)
-    predictions = pipeline.predict(test_text)
+best_estimator = grid_search.best_estimator_
 
-    confusion += confusion_matrix(test_y, predictions)
-    score = f1_score(test_y, predictions, pos_label='spam')
-    scores.append(score)
+predictions = best_estimator.predict(spam_txt_test+ham_txt_test)
+
+# Creo vector con las clases correctas
+test_y = len(spam_txt_test)*["spam"] + len(ham_txt_test)*["ham"]
+
+confusion = confusion_matrix(test_y, predictions)
+
+score = f1_score(test_y, predictions, pos_label='spam')
+
 
 print('Total emails classified:', len(df))
 print('Score:', sum(scores)/len(scores))
