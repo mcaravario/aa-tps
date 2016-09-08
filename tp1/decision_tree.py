@@ -9,107 +9,70 @@ from sklearn.cross_validation import cross_val_score, KFold
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix, f1_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.grid_search import GridSearchCV
 from nltk import word_tokenize, WordNetLemmatizer
 from nltk.corpus import stopwords
 from collections import Counter
 
-# Leo los mails (poner los paths correctos).
-# ham_raw= json.load(open('./data/ham_txt.json'))
-# spam_raw= json.load(open('./data/spam_txt.json'))
-ham_txt= json.load(open('./data/ham_dev.json'))
-spam_txt= json.load(open('./data/spam_dev.json'))
 
-# # Imprimo un mail de ham y spam como muestra.
-# print ham_txt[0]
-# print "------------------------------------------------------"
-# print spam_txt[0]
-# print "------------------------------------------------------"
+# Leo los mails (poner los paths correctos).)
+ham_txt = json.load(open('./data/ham_dev.json'))
+spam_txt = json.load(open('./data/spam_dev.json'))
 
+# Me quedo con la mitad del dataset para entrenar
+ham_txt_train = ham_txt[:len(ham_txt)/2]
+spam_txt_train = spam_txt[:len(spam_txt)/2]
+
+print "Cargando data frame..."
 # Armo un dataset de Pandas
 # http://pandas.pydata.org/
-
-# ham_txt = ham_raw[:int(0.5*len(ham_raw))]
-# ham_test = ham_raw[int(0.5*len(ham_raw)):]
-# spam_txt = spam_raw[:int(0.5*len(spam_raw))]
-# spam_test = spam_raw[int(0.5*len(spam_raw)):]
-df = pd.DataFrame(ham_txt+spam_txt, columns=['text'])
-df['class'] = ['ham' for _ in range(len(ham_txt))]+['spam' for _ in range(len(spam_txt))]
-
-# vectorizer = CountVectorizer(max_features=100)
-# X = vectorizer.fit_transform(df['text'].values)
-# print vectorizer.get_feature_names()
-
-# words = ['3d', 'br', 'font']
-# def count_3d(txt): return txt.count('3d')
-# def count_br(txt): return txt.count('br')
-# def count_font(txt): return txt.count('font')
-
-# df['3d'] = map(count_3d, df.text)
-# df['br'] = map(count_br, df.text)
-# df['font'] = map(count_font, df.text)
-# X = df[['3d', 'br', 'font']].values
-# # Extraigo dos atributos simples:
-# # 1) Longitud del mail.
-# df['len'] = map(len, df.text)
-
-# # 2) Cantidad de espacios en el mail.
-# def count_spaces(txt): return txt.count(" ")
-# df['count_spaces'] = map(count_spaces, df.text)
-
-# # 3) Tokenizo y lemmatizo
-# stoplist = stopwords.words('english')
-# def preprocess(sentence):
-# 	lemmatizer = WordNetLemmatizer()
-# 	return [lemmatizer.lemmatize(word.lower()) for word in word_tokenize(sentence)]
-
-# def get_features(text, setting):
-#     if setting=='bow':
-#         return {word: count for word, count in Counter(preprocess(text)).items() if not word in stoplist}
-#     else:
-#         return {word: True for word in preprocess(text) if not word in stoplist}
-
-# all_features = [(get_features(email, 'bow'), label) for (email, label) in all_emails]
-
-# df[word] = map()
-# print all_features[0][0]
+# df = pd.DataFrame(ham_txt_train+spam_txt_train, columns=['text'])
+# df['class'] = ['ham' for _ in range(len(ham_txt_train))]+['spam' for _ in range(len(spam_txt_train))]
+# del ham_txt_train
+# del spam_txt_train
 
 # # Preparo data para clasificar
-# X = df[['len', 'count_spaces']].values
-y = df['class']
+# y = df['class']
+# X = df['text']
 
-# Elijo mi clasificador.
-clf = DecisionTreeClassifier()
+X = ham_txt_train+spam_txt_train
+y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train))]
+
 
 pipeline = Pipeline([
 	('count_vectorizer',	CountVectorizer(max_features=100)),
 	('classifier', 			DecisionTreeClassifier()) ])
 
-k_fold = KFold(n=len(df), n_folds=10, shuffle=True)
-scores = []
-confusion = np.array([[0, 0], [0, 0]])
-for train_indices, test_indices in k_fold:
-    train_text = df.iloc[train_indices]['text'].values
-    train_y = df.iloc[train_indices]['class'].values.astype(str)
+print "Creo pipeline"
 
-    test_text = df.iloc[test_indices]['text'].values
-    test_y = df.iloc[test_indices]['class'].values.astype(str)
+# Configuracion de Grid search
+param_grid = 	{"classifier__max_depth": [10, 50, 100],
+				"classifier__max_features": ["sqrt", None],
+              	"classifier__criterion": ["gini", "entropy"]}
+grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
+grid_search.fit(X, y)
+print "Termine de entrenar"
+parameters = grid_search.best_params_
+print parameters
 
-    pipeline.fit(train_text, train_y)
-    predictions = pipeline.predict(test_text)
+best_estimator = grid_search.best_estimator_
 
-    confusion += confusion_matrix(test_y, predictions)
-    score = f1_score(test_y, predictions, pos_label='spam')
-    scores.append(score)
+# Me quedo con la mitad del dataset para testear
+ham_txt_test = ham_txt[len(ham_txt)/2:]
+spam_txt_test = spam_txt[len(ham_txt)/2:]
 
-print('Total emails classified:', len(df))
-print('Score:', sum(scores)/len(scores))
-print('Confusion matrix:')
-print(confusion)
+predictions = best_estimator.predict(spam_txt_test+ham_txt_test)
 
-# # Ejecuto el clasificador entrenando con un esquema de cross validation
-# # de 10 folds.
-# res = cross_val_score(clf, X, y, cv=2, scoring='f1')
+# Creo vector con las clases correctas
+test_y = len(spam_txt_test)*[1] + len(ham_txt_test)*[0]
 
-# print res
-# print np.mean(res), np.std(res)
-# # salida: 0.783040309346 0.0068052434174  (o similar)
+confusion = confusion_matrix(test_y, predictions)
+
+score = f1_score(test_y, predictions, pos_label=1)
+
+
+print 'Total emails classified:', len(test_y)
+print 'Score:', score
+print 'Confusion matrix:'
+print confusion
