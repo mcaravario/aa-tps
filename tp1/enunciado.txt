@@ -32,3 +32,39 @@ La competencia será el día miércoles 28/9/2016 a las 13:00 en el laboratorio.
 La participación en la competencia es obligatoria, pero la posición del grupo en el ranking de la competencia no forma parte de la evaluación.
 Se podrán pedir pruebas de integridad y autoría, es decir, verificar que la salida solicitada es fruto del modelo presentado y que el modelo fue construido según lo requerido en este enunciado.
 La evaluación será grupal y se basará en la calidad del informe; la originalidad, practicidad y coherencia técnica de la solución; la corrección y solidez de las pruebas realizadas.
+
+Preguntas Frecuentes
+
+.
+PREGUNTA: ¿Cómo debe ser el informe?
+
+RESPUESTA: Recomendamos armar el informe con las siguientes secciones:
+
+Extracción de atributos: Describir en castellano los atributos extraidos de los mails, en forma concisa.
+Modelos: Listar los algoritmos de aprendizaje elegidos para experimentar. Describir cualquier decisión que hayan tomado (p.ej., elección de hiperparámetros).
+Reducción de dimensionalidad: Describir brevemente las técnicas empleadas.
+Resultados: Describir los resultados conseguidos por los distintos modelos y conjuntos de atributos considerados. Preferentemente, resumir los resultados en tablas/figuras. Mencionar los tiempos de ejecución aproximados de cada técnica.
+Discusión: Analizar los resultados, buscando responder cuestiones como, por ejemplo: ¿cuáles son los atributos encontrados con mayor poder predictivo?, ¿cuán sensibles fueron los algoritmos a las técnicas de reducción de dimensionalidad consideradas?, ¿resultó clara la elección del algoritmo para la competencia, o hubo que poner en la balanza distintos factores?
+La longitud sugerida del informe es de entre 3 y 5 páginas de texto (sin contar tablas o figuras). Además pueden incluirse tablas y figuras, pero siempre deben ser referenciadas y explicadas en el texto.
+
+Si se tomaron ideas de la literatura (papers, libros, blogs, wikipedia o lo que sea), citar claramente las fuentes (autor, título, tipo de publicación, año de publicación, URL si corresponde, etc.).
+
+No incluir código. Si es necesario describir un algoritmo, hacerlo en pseudocódigo.
+
+.
+
+PREGUNTA:¿Que opinan de que les entreguemos el informe en forma de un IPython Notebook (http://jupyter.org)?
+
+RESPUESTA: ¡Totalmente! Las usamos mucho en el grupo de investigación, así que adelante! (Esto es totalmente opcional, y con entregar un PDF alcanza.)
+
+.
+
+PREGUNTA: ¿Hace falta separar un test set?
+
+RESPUESTA: Sí, separar un test set (chico) les va a venir bien para poder reportar una estimación realista de cuán bien funciona el método sobre datos frescos.
+
+.
+
+PREGUNTA: ¿Podemos usar cosas que no se hayan visto (ni sabemos si se van a ver eventualmente) en la materia?
+
+RESPUESTA: Sí, pueden usar cualquier cosa que no hayamos visto, por supuesto, siempre que sepan qué están haciendo. No vale replicar sin tener idea. Y de nuevo, siempre citar las fuentes.
