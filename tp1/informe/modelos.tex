@@ -1,1 +1,14 @@
 \section{Modelos}
+\subsection{Árbol de decisión}
+El primer modelo que utilizamos es el más fácil para overfittear, y utilizamos distintos efoques greedy con el objetivo de reducir la dimensión del árbol. La librería no soporta \textit{prunning}, así que nos centramos en la altura del árbol y la cantidad de muestras por nodo. 
+\begin{itemize}
+\item \textbf{max\_depth:} \textit{3, 5, 10} - La altura del árbol
+\item \textbf{criterion:} \textit{Gini, Entropy} - La métrica utilizada.
+\item \textbf{max\_features:} \textit{10, 50, 100} - Cuantos atributos tomar en cuenta para la partición.
+\item \textbf{max\_samples\_leaf:} \textit{1, 5 10} - Cuantas muestras puede haber en cada hoja
+\end{itemize}
+{\Large CUIDADO VERSO}
+
+Los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria del dataset, y, aunque en general esto no es bueno, en nuestro caso particular de tener más emails válidos que spam no nos trae problema, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución (\textit{false negative}).  
+
+\subsection{Random Forest}
