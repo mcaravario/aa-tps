@@ -1,0 +1,66 @@
+\documentclass[a4paper,11pt]{article}
+
+
+% Simbolos matemáticos
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{listings}
+
+% Descoración y gráficos
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{alltt}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{framed}
+
+
+\usepackage[paper=a4paper, hmargin=3.5cm, bottom=3.5cm, top=3.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[colorlinks,citecolor=black,filecolor=black,linkcolor=black,    urlcolor=black]{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx, wrapfig}
+\usepackage{caratula}
+
+\begin{document}
+%%%%% CARATULA %%%%%
+\titulo{Trabajo Práctico}
+\subtitulo{Detección de spam}
+
+\fecha{\today}
+
+\materia{Aprendizaje Automático}
+
+\integrante{Barijhoff, Hernán Federico}{338/13}{hernanfb@live.com.ar}
+\integrante{Bonomi, Cyntia}{}{}
+\integrante{Caravario, Martin}{}{}
+
+\maketitle
+\newpage
+
+%%%%% INDICE %%%%%
+\setcounter{page}{1}
+\newpage
+\tableofcontents
+
+\newpage
+% \input{introduccion}
+\input{extraccion}
+\input{modelos}
+\input{reduccion}
+\input{resultados}
+\input{discusion}
+\input{referencias}
+
+\end{document}
+

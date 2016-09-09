@@ -1,0 +1,16 @@
+\section{Extracción de atributos}
+Como los emails que se busca clasificar están en formato texto plano, es necesario transformar la colección de datos en los vectores de atributos numéricos que recibirán los modelos. A este proceso se le llama \textit{vectorización}.
+
+Decidimos utilizar la estrategia de representación \textbf{\textit{Bag of Words}}, en la cual un atributo es la frequencia de ocurrencia de una palabra. La idea general es presuponer que existen ciertas palabras que aparecen más (o menos) veces en los email spam que en los ham. 
+
+Existen diversos grados de refinamiento de esta estrategia, que derivan del área de \textit{Procesamiento de Lenguaje Natural}. Nosotros utilizamos la función \textbf{TfidVectorizer}, que une las funciones \textbf{Count Vectorizer} y \textbf{Inverse Document Frequency}. Estas sirven para \textit{tokenizar}, \textit{contar} y \textit{normalizar} las palabras de los textos.
+
+La primera función asigna tokens a las palabras y cuenta las ocurrencias, pero el problema es que las palabras que se repiten mucho en cualquier lenguaje, como los pronombres, artículos, etc., no aportan mucha información al clasificador. Por esto, la segunda función aporta la técnica de \textbf{términos pesados}, en la cual se normaliza los textos para restarle importancia a esas palabras que más se repiten. Esta idea se aplica a otros ámbitos académicos, como los resultados de motores de búsqueda.
+
+Además de lo explicado anteriormente, seleccionamos estos otros parámetros:
+\begin{itemize}
+\item \textbf{max\_features:} \textit{100} - Para acotar la cantidad de atributos, por default utiliza todos los tokens posibles.
+\item \textbf{stop\_words:} \textit{english} - Para que elimine las palabras más comunes del idioma, como ``a'', ``it'', ``its'', etc.
+% No se si este está bien, si quieren saquenlo.
+\item \textbf{lowercase:} \textit{False} - No transforme las palabras a minúscula por default. Algunos spam están completamente escritos en mayúscula.
+\end{itemize}
