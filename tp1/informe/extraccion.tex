@@ -1,4 +1,5 @@
 \section{Extracción de atributos}
+\subsection{Bag of Words}
 Como los emails que se busca clasificar están en formato texto plano, es necesario transformar la colección de datos en los vectores de atributos numéricos que recibirán los modelos. A este proceso se le llama \textit{vectorización}.
 
 Decidimos utilizar la estrategia de representación \textbf{\textit{Bag of Words}}, en la cual un atributo es la frequencia de ocurrencia de una palabra. La idea general es presuponer que existen ciertas palabras que aparecen más (o menos) veces en los email spam que en los ham. 
@@ -10,7 +11,16 @@ La primera función asigna tokens a las palabras y cuenta las ocurrencias, pero 
 Además de lo explicado anteriormente, seleccionamos estos otros parámetros:
 \begin{itemize}
 \item \textbf{max\_features:} \textit{100} - Para acotar la cantidad de atributos, por default utiliza todos los tokens posibles.
-\item \textbf{stop\_words:} \textit{english} - Para que elimine las palabras más comunes del idioma, como ``a'', ``it'', ``its'', etc.
-% No se si este está bien, si quieren saquenlo.
+\item \textbf{stop\_words:} \textit{english} - Para que elimine las palabras más comunes del idioma, como ``a'', ``it'', ``its'', etc.\\
+
+No se si el siguente está bien conceptualmente, si quieren saquenlo.
 \item \textbf{lowercase:} \textit{False} - No transforme las palabras a minúscula por default. Algunos spam están completamente escritos en mayúscula.
 \end{itemize}
+
+{\Large WARNING!!!! POSIBLE VERSO}
+
+Decidimos no utilizar \textit{Grid Search} sobre estos parámetros, en particular max\_features, porque creemos que se podría caer en \textit{overfitting} fácilmente. Al utilizar la misma cantidad de atributos para todos los modelos, comparten la representación abstracta del conjunto de emails.\\
+
+{\Large SI QUIEREN PODEMOS CODEAR LA SOLUCION CON LEMMATIZER, NO ES NADA, PERO NO TENGO GANAS DE HACERLO AHORA}
+\subsection{Limitaciones}
+La limitación inherente a \textit{Bag of Words} es que simplifica la información que se podría obtener de los textos, ignorando cualquier dependencia en el orden de las palabras y tomando como tokens distintos errores ortográficos o derivaciones de palabras. Esto se puede resolver modificando más parámetros (\textit{n-grams}) o con distintas técnicas de \textit{NLP}, como por ejemplo, \textbf{lemmatizers}, pero decidimos no utilizarlas para no aumentar la complejidad.
