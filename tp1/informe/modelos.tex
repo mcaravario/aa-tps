@@ -12,3 +12,7 @@ El primer modelo que utilizamos es el más fácil para overfittear, y utilizamos
 Los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria del dataset, y, aunque en general esto no es bueno, en nuestro caso particular de tener más emails válidos que spam no nos trae problema, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución (\textit{false negative}).  
 
 \subsection{Random Forest}
+A diferencia de lo visto en clase, la implementación de este modelo reemplaza la votación de una única clase por el promedio de las predicciones probabilísticas. Los parámetros con los que experimentamos son los mismos que para un único árbol de decisión, pero además de esos, se le agrega:
+\begin{itemize}
+\item \textbf{n\_estimators:} \textit{5, 10, 25} - La cantidad de árboles
+\end{itemize}
