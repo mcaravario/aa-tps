@@ -1,0 +1,410 @@
+Cargando data frame...
+Creo pipeline
+Fitting 10 folds for each of 20 candidates, totalling 200 fits
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.998220 -  27.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.997103 -  28.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.997104 -  28.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.998220 -  28.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.998219 -  28.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.997326 -  28.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.997773 -  28.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.993563 -  27.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.941041 -  26.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=gini, score=0.898985 -  24.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.999555 -  28.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.999111 -  28.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.999333 -  28.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=1.000000 -  28.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.998666 -  28.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.999555 -  28.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.999333 -  28.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.993149 -  27.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.971593 -  26.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=gini, score=0.951774 -  24.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999333 -  28.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999778 -  29.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999333 -  29.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999778 -  29.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999778 -  28.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999111 -  29.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.999556 -  28.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.993811 -  27.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.975610 -  26.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=gini, score=0.954442 -  25.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999333 -  29.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999556 -  29.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999555 -  29.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999778 -  29.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999333 -  29.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.999555 -  29.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=1.000000 -  29.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.996454 -  28.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.977116 -  27.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=gini, score=0.953039 -  25.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.999778 -  29.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=1.000000 -  29.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.999778 -  29.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=1.000000 -  30.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=1.000000 -  30.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.999778 -  30.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.999333 -  30.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.994473 -  29.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.980279 -  27.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=gini, score=0.962912 -  25.8s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.998220 -  30.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.997774 -  30.3s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.996879 -  30.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.998443 -  30.3s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.997103 -  30.5s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.996437 -  30.6s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.996879 -  30.6s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.994453 -  28.7s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.953377 -  27.2s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=gini, score=0.902685 -  25.0s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.999111 -  32.1s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.998667 -  31.8s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.998889 -  32.1s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.999778 -  31.8s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.998888 -  31.9s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.998888 -  32.0s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.998665 -  31.8s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.993155 -  30.5s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.962456 -  28.8s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=gini, score=0.945171 -  26.2s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.999333 -  33.8s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.999334 -  35.3s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.997778 -  35.3s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.998889 -  36.2s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.999556 -  37.2s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.998665 -  35.9s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.998665 -  36.7s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.992933 -  35.5s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.966143 -  32.9s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=gini, score=0.941420 -  30.1s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.999333 -  40.7s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.999111 -  40.0s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.999111 -  40.3s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.999556 -  41.3s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.999555 -  41.3s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.998666 -  40.4s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.998665 -  40.2s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.993811 -  37.8s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.966302 -  35.4s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=gini, score=0.946519 -  31.0s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.998889 -  43.8s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.999778 -  43.9s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.998443 -  43.3s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.999778 -  43.4s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.999333 -  43.2s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.998667 -  42.7s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.998888 -  42.1s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.992927 -  40.2s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.965655 -  37.8s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=gini, score=0.948355 -  32.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.996211 -  28.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997326 -  28.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.996432 -  28.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997327 -  29.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.994863 -  30.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997326 -  30.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997550 -  30.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.991339 -  28.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.938426 -  27.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=2, classifier__criterion=entropy, score=0.893514 -  25.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999111 -  30.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999556 -  31.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999555 -  31.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=1.000000 -  32.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999778 -  31.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999778 -  31.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999778 -  29.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.994250 -  28.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.972925 -  27.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=5, classifier__criterion=entropy, score=0.951686 -  25.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999333 -  30.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999778 -  29.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=1.000000 -  30.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999778 -  30.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999555 -  29.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999778 -  30.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999556 -  29.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.993816 -  29.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.976744 -  28.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=7, classifier__criterion=entropy, score=0.956799 -  26.3s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999778 -  31.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999333 -  31.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999333 -  30.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=1.000000 -  30.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999778 -  30.2s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999555 -  30.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999778 -  29.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.995347 -  29.4s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.975479 -  27.8s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=10, classifier__criterion=entropy, score=0.952337 -  25.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  31.6s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=1.000000 -  31.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  32.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  31.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999555 -  32.0s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  32.1s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  32.5s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.995353 -  30.9s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.982541 -  29.7s
+[CV] classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=sqrt, classifier__n_estimators=15, classifier__criterion=entropy, score=0.958647 -  27.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997774 -  32.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.999110 -  31.7s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.997774 -  30.1s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.999556 -  30.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.999778 -  31.4s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.999111 -  31.9s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.999110 -  31.5s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.993354 -  30.0s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.957938 -  28.7s
+[CV] classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=2, classifier__criterion=entropy, score=0.905103 -  26.5s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.998443 -  32.7s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=1.000000 -  34.4s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999111 -  34.7s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999556 -  33.6s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999778 -  32.9s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999555 -  33.1s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.999333 -  32.4s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.991834 -  31.9s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.967827 -  30.1s
+[CV] classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=5, classifier__criterion=entropy, score=0.951408 -  27.4s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999333 -  34.6s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=1.000000 -  34.7s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999333 -  34.6s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999112 -  34.7s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999778 -  34.6s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999555 -  34.8s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.999555 -  34.6s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.991178 -  33.1s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.971909 -  31.1s
+[CV] classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=7, classifier__criterion=entropy, score=0.960651 -  28.0s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999555 -  35.7s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=1.000000 -  35.9s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999556 -  36.0s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999778 -  35.7s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999333 -  35.5s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999555 -  36.4s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.999110 -  38.1s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.993580 -  35.0s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.969467 -  32.9s
+[CV] classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=10, classifier__criterion=entropy, score=0.955469 -  29.9s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999111 -  40.0s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=1.000000 -  39.7s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999333 -  40.1s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999556 -  38.7s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=1.000000 -  39.7s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999778 -  40.1s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.999555 -  39.3s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.993375 -  36.3s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.974745 -  33.8s
+[CV] classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy 
+[CV]  classifier__max_features=None, classifier__n_estimators=15, classifier__criterion=entropy, score=0.959184 -  30.3s
+Termine de entrenar
+{'classifier__max_features': 'sqrt', 'classifier__n_estimators': 15, 'classifier__criterion': 'gini'}
+Total emails classified: 45000
+Score: 0.974213696186
+Confusion matrix:
+[[22007   493]
+ [  663 21837]]

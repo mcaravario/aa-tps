@@ -9,7 +9,7 @@ from sklearn.cross_validation import cross_val_score, KFold
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix, f1_score
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.grid_search import GridSearchCV
 from nltk import word_tokenize, WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -42,13 +42,15 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 
 pipeline = Pipeline([
 	('count_vectorizer',	CountVectorizer(max_features=100)),
-	('classifier', 			KNeighborsClassifier()) ])
+	('classifier', 			RandomForestClassifier()) ])
 
 print "Creo pipeline"
 
 # Configuracion de Grid search
-param_grid = 	{"classifier__n_neighbors": [1, 3, 5, 7, 10],
-				"classifier__weights": ["uniform", "distance"]}
+param_grid = 	{"classifier__n_estimators": [2, 5, 7, 10, 15],
+                "classifier__criterion": ["gini", "entropy"],
+				"classifier__max_features": ["sqrt", None]}
+
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)
 print "Termine de entrenar"
