@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.cross_validation import cross_val_score, KFold
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.neighbors import KNeighborsClassifier
@@ -25,31 +25,22 @@ ham_txt_train = ham_txt[:len(ham_txt)/2]
 spam_txt_train = spam_txt[:len(spam_txt)/2]
 
 print "Cargando data frame..."
-# Armo un dataset de Pandas
-# http://pandas.pydata.org/
-# df = pd.DataFrame(ham_txt_train+spam_txt_train, columns=['text'])
-# df['class'] = ['ham' for _ in range(len(ham_txt_train))]+['spam' for _ in range(len(spam_txt_train))]
-# del ham_txt_train
-# del spam_txt_train
-
-# # Preparo data para clasificar
-# y = df['class']
-# X = df['text']
 
 X = ham_txt_train+spam_txt_train
 y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train))]
 
 
 pipeline = Pipeline([
-	('count_vectorizer',	CountVectorizer(max_features=100)),
+	('tfidf_vectorizer',	TfidfVectorizer(max_features=100, stop_words="english", lowercase=False)),
 	('classifier', 			DecisionTreeClassifier()) ])
 
 print "Creo pipeline"
 
 # Configuracion de Grid search
-param_grid = 	{"classifier__max_depth": [10, 50, 100],
-				"classifier__max_features": ["sqrt", None],
-              	"classifier__criterion": ["gini", "entropy"]}
+param_grid = 	{"classifier__max_depth": [3, 5, 10],
+				"classifier__max_features": ["sqrt", 10, 50, 100, None],
+              	"classifier__criterion": ["gini", "entropy"],
+              	"classifier__min_samples_leaf": [1, 5, 10]}
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)
 print "Termine de entrenar"
