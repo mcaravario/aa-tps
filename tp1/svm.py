@@ -37,8 +37,7 @@ pipeline = Pipeline([
 print "Creo pipeline"
 
 # Configuracion de Grid search
-param_grid = 	{"classifier__kernel": ["linear", "poly", "rbf"],
-				"classifier__degree": [2, 3]}
+param_grid = 	{"classifier__kernel": ["linear", "poly", "rbf"]}
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)
 print "Termine de entrenar"
