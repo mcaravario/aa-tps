@@ -7,13 +7,16 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.cross_validation import cross_val_score, KFold
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.grid_search import GridSearchCV
 from nltk import word_tokenize, WordNetLemmatizer
 from nltk.corpus import stopwords
 from collections import Counter
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # Leo los mails (poner los paths correctos).)
@@ -39,10 +42,13 @@ print "Cargando data frame..."
 X = ham_txt_train+spam_txt_train
 y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train))]
 
+selection = SelectKBest(k=20)
+combined_features = FeatureUnion([("pca", PCA(n_components=30)), ("univ_select", selection)])
 
 pipeline = Pipeline([
-	('count_vectorizer',	CountVectorizer(max_features=100)),
-	('classifier', 			RandomForestClassifier()) ])
+	('extraction',			TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
+	('selection',    		combined_features),
+	('classifier', 			RandomForestClassifier())])
 
 print "Creo pipeline"
 
