@@ -42,12 +42,12 @@ print "Cargando data frame..."
 X = ham_txt_train+spam_txt_train
 y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train))]
 
-selection = SelectKBest(k=20)
-combined_features = FeatureUnion([("pca", PCA(n_components=30)), ("univ_select", selection)])
+selection = SelectKBest(k=100)
+#combined_features = FeatureUnion([("pca", PCA(n_components=30)), ("univ_select", selection)])
 
 pipeline = Pipeline([
 	('extraction',			TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
-	('selection',    		combined_features),
+	('selection',    		selection),
 	('classifier', 			RandomForestClassifier())])
 
 print "Creo pipeline"

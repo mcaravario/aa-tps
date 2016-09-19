@@ -44,12 +44,11 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 pca = PCA(n_components=2)
 
 selection = SelectKBest(k=2)
-
-combined_features = FeatureUnion([("pca", PCA(n_components=50)), ("univ_select", selection)])
+#combined_features = FeatureUnion([("pca", PCA(n_components=50)), ("univ_select", selection)])
 
 pipeline = Pipeline([
 	('extraction',	TfidfVectorizer(max_features=100, stop_words="english", lowercase=False)),
-	('features', 			combined_features),
+	('selection', 			selection),
 	('classifier', 			KNeighborsClassifier())])
 
 print "Creo pipeline"
