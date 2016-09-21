@@ -21,10 +21,13 @@ como acotar la cantidad de \textit{support vectors} o usar \textit{kernels} prop
 \end{itemize}
 
 \subsection{Random Forest}
+Este clasificador consiste en entrenar un conjunto de arboles de decision de forma aleatoria, para tratar de minimizar el sobreajuste que puede aparecer al entrenar un solo arbol.
 A diferencia de lo visto en clase, la implementación de este modelo reemplaza la votación de una única clase por el promedio de las predicciones probabilísticas.
  Los parámetros con los que experimentamos son los mismos que para un único árbol de decisión, pero además de esos, se le agrega:
 \begin{itemize}
-\item \textbf{n\_estimators:} \textit{5, 10, 25} - La cantidad de árboles
+\item \textbf{n\_estimators:} \textit{2, 5, 7, 10, 15} - La cantidad de árboles
+\item \textbf{criterion:} \textit{"gini", "entropy"} - La metrica utilizada
+\item \textbf{max\_features:} \textit{"sqrt", "None"} - Cuantos atributos a tener en cuenta para la particion.
 \end{itemize}
 
 \subsection{K Nearest Neighbors}
