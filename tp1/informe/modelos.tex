@@ -40,3 +40,30 @@ A este clasificador se le deben pasar como parametro la cantidad de vecinos cont
 \end{itemize}
 A la hora de experimentar, decidimos utilizar una cantidad acotada de vecinos, ya que al ser una base de datos con 90K mails, este clasificador tarda demasiado
 en terminar y en muchos casos se obtienen errores de memoria, ya que debe calcular la distancia de la nueva instancia contra todas los demas.
+
+
+
+\subsection{Naive Bayes}
+
+Para este algoritmo encontramos en la libreria Sklearn tres implementacions distintas. Cada una supone una distribucion distinta para la probabilidad de los atributos: Gaussiana, Multinomial y Bernoulli.
+
+
+Como no hicimos ningun tipo de analisis sobre que distribucion subyacente tienen los datos, en principio decidimos utilizar las tres. Sin embargo nos encontramos con que Bernoulli esta diseñado para trabajar con features binarias/booleanas motivo por el cual lo descartamos.
+
+
+\begin{itemize}
+\item \textbf{Distribucion Multinomial:} 
+	\begin{itemize}
+	\item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parametro de suavizado. (No entendemos bien como suaviza pero decidimos ver que pasaba).
+	\item \textbf{fit\_prior:} \textit{[True, False]} Sirve para aprender sobre las probabilidades a priori de las clases. Si es falso, se utilizara probabilidad uniforme.
+	\end{itemize}
+
+
+\item \textbf{Distribucion Gaussiana:} La distribucion gaussiana segun la documentacion tiene parametros, pero en la implentacion cuando intentamos utilizarlos nos dicen que no existen.
+
+\end{itemize}
+
+
+
+
+
