@@ -1,9 +1,14 @@
 \section{Reducción de dimensionabilidad}
+Experimentamos con la técnica de selección univariada conocida como \textit{Ranking de atributos} para eliminar las palabras que no aportan información relevante
+para la clasificación. Esta técnica consiste en generar un ranking de atributos evaluando cada uno por separado para luego elegir los K mejores rankeados. \\
+En un primer intento tratamos de realizar la reducción utilizando la combinación de dos tipos de selecciones posibles, Ranking de atributos y PCA.
+Pero esto no fue posible ya que nos encontramos con incompatibilidades en las funciones de las librerías.
+ Es por esto que decidimos experimentar unicamente con el selector \textit{KBest}, quedandonos con los primeros 100 del ranking.
 
 Para una selección mas inteligente de los atributos decidimos experimentar con PCA. Nos pareció interesante probar como cambiaba la performance de los clasificadores. Sobre todo en Naive Bayes el cual supone que los atributos son independientes, lo cual, en nuestro caso, es bastante poco probable debido a que estamos tomando la frecuencia de palabras. Sin embargo nos topamos con que la implementación de PCA no es compatible con la implementación de todos los modelos que utilizamos. 
 
 
-Para estos casos, solo experimentamos con la técnica de selección univariada conocida como Ranking de Atributos (SelectKBest) para eliminar las palabras que no aportan información relevante para la clasificación. Esta seleccion funciona mediante la seleccion de las mejores features en base a test estadisticos univariados eliminando las características que son más propensas a ser independientes de la clase y por lo tanto irrelevante para la clasificación.
+Para estos casos, solo experimentamos con la técnica de selección univariada conocida como Ranking de Atributos para eliminar las palabras que no aportan información relevante para la clasificación. Esta seleccion funciona mediante la seleccion de las mejores features en base a test estadisticos univariados eliminando las características que son más propensas a ser independientes de la clase y por lo tanto irrelevante para la clasificación.
   
   
 Parametros utilizados:
