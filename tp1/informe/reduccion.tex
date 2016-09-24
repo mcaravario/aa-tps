@@ -1,11 +1,14 @@
 \section{Reducción de dimensionabilidad}
-Experimentamos con la técnica de selección univariada conocida como Ranking de Atributos para eliminar las palabras que no aportan información relevante para la clasificación. 
+Experimentamos con la técnica de selección univariada conocida como \textit{Ranking de atributos} para eliminar las palabras que no aportan información relevante
+para la clasificación. Esta técnica consiste en generar un ranking de atributos evaluando cada uno por separado para luego elegir los K mejores rankeados. \\
+En un primer intento tratamos de realizar la reducción utilizando la combinación de dos tipos de selecciones posibles, Ranking de atributos y PCA.
+ Pero esto no fue posible ya que nos encontramos con incompatibilidades en las funciones de las librerías.
+ Es por esto que decidimos experimentar unicamente con el selector \textit{KBest}, quedandonos con los primeros 100 del ranking.
 
 {\Large Ver si aumentamos la cantidad de palabras inicial o reducimos los 100}
 
 {\Large Ver si agregar un histograma de los scores}
 
-No pudimos usar PCA por cuestiones de incompatibilidad en las funciones de las librerías. 
 \begin{itemize}
 \item \textbf{score\_func:} \textit{chi2, ANOVA F-value} - La métrica de scoring
 \end{itemize}
