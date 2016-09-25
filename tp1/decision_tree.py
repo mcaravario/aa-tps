@@ -28,9 +28,9 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 
 
 pipeline = Pipeline([
-	('extraction',			TfidfVectorizer(max_features=500, stop_words="english", lowercase=False)),
+	('extraction',			TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
 	#("features", 			FeatureUnion([("pca", PCA(n_components=50)), ("univ_select", SelectKBest(k=50))])),
-	('selection', 			SelectKBest(k=50, score_func=f_classif)),
+	('selection', 			SelectKBest(k=100)),
 	('classifier', 			DecisionTreeClassifier()) ])
 
 print "Creo pipeline"
