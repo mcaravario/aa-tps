@@ -58,7 +58,7 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 
 pipeline = Pipeline([
     ('extraction',          TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
-    ("selection",           SelectKBest()),
+    ("selection",           SelectKBest(k=100)),
     ('classifier',          MultinomialNB()) ])
 
 
@@ -66,9 +66,7 @@ print "Creo pipeline"
 
 # Configuracion de Grid search
 param_grid =    {   'classifier__alpha': (0 , 0.001, 0.1, 1.0),
-                    'classifier__fit_prior':[True, False],                    
-                    'selection__k': [25, 50, 100],
-                    'selection__score_func':[chi2, f_classif]
+                    'classifier__fit_prior':[True, False]
 }
 
 

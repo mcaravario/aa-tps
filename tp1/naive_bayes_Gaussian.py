@@ -53,17 +53,14 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 pipeline = Pipeline([
     ('extraction',          TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
     ('to_dense',            DenseTransformer()), 
-    ("selection",           FeatureUnion([("pca", PCA(n_components=100)), ("univ_select", SelectKBest())])),
+    ("selection",           SelectKBest(k=100)),
     ('classifier',          GaussianNB()) ])
 
 print "Creo pipeline"
 
 
 # Configuracion de Grid search
-param_grid =    {   'selection__univ_select__k': [25, 50, 100],
-                    'selection__univ_select__score_func':[chi2, f_classif]
-
-}
+param_grid =    { }
 
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)

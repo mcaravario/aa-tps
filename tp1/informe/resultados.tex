@@ -15,9 +15,28 @@ A la hora de experimentar, decidimos utilizar el método \textbf{grid search} co
 Este método se encarga de armar un clasficador por cada combinación de parámetros que se le pasan y luego aplica la estrategia de \textbf{KFold} (con k = 10), la cual
 consiste en particionar nuestro conjunto de datos de test en 10 subconjuntos, y entrenar sobre 9 de ellos, dejando un sobconjunto para testear.
 
+También decidimos quedarnos con la mitad de los mails para entrenamiento y la otra mitad para testear. 
+
 Los resultados obtenidos se encuentran presentados a continuación
 
 \subsection{Decision Tree}
+En el caso de Decision Tree la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
+\begin{itemize}
+\item{fit\_prior: True}
+\item{alpha: 0}
+\end{itemize}
+
+Con un score de 0.815540223063
+
+ \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   & & \bfseries p & \bfseries n & \bfseries total \\
+   & p$'$ & \MyBox{21052}{} & \MyBox{1448}{} & P$'$ \\[2.4em]
+   & n$'$ & \MyBox{6011}{} & \MyBox{16489}{} & N$'$ \\
+   & total & P & N &
+ \end{tabular}
+
 \subsection{SVM}
 \subsection{Random Forest}
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
@@ -51,4 +70,36 @@ obteniendo un score de:
 
 \subsection{Naive Bayes - Gaussian}
 
+En el caso de Naive Bayes - Gaussian. En este caso, como mencionamos mas arriba, no tenemos ningun parametro por variar. \\
+
+Con un score de 0.740670375899
+
+ \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   & & \bfseries p & \bfseries n & \bfseries total \\
+   & p$'$ & \MyBox{21800}{} & \MyBox{700}{} & P$'$ \\[2.4em]
+   & n$'$ & \MyBox{8855}{} & \MyBox{13645}{} & N$'$ \\
+   & total & P & N &
+ \end{tabular}
+
+
 \subsection{Naive Bayes - Multinomial}
+
+En el caso de Naive Bayes - Multinomial la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
+\begin{itemize}
+\item{fit\_prior: True}
+\item{alpha: 0}
+\end{itemize}
+
+Con un score de 0.815540223063
+
+ \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   & & \bfseries p & \bfseries n & \bfseries total \\
+   & p$'$ & \MyBox{21052}{} & \MyBox{1448}{} & P$'$ \\[2.4em]
+   & n$'$ & \MyBox{6011}{} & \MyBox{16489}{} & N$'$ \\
+   & total & P & N &
+ \end{tabular}
+
