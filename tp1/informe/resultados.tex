@@ -39,6 +39,26 @@ Con un score de 0.977214284117
  \end{tabular}
 
 \subsection{SVM}
+
+En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
+\begin{itemize}
+\item{kernel: l}
+\item{C: 3.5}
+\end{itemize}
+
+Con un score de 0.94790000457
+
+ \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   & & \bfseries p & \bfseries n & \bfseries total \\
+   & p$'$ & \MyBox{21979}{} & \MyBox{521}{} & P$'$ \\[2.4em]
+   & n$'$ & \MyBox{1759}{} & \MyBox{20741}{} & N$'$ \\
+   & total & P & N &
+ \end{tabular}
+
+
+
 \subsection{Random Forest}
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
