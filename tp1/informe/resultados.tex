@@ -15,7 +15,9 @@ A la hora de experimentar, decidimos utilizar el método \textbf{grid search} co
 Este método se encarga de armar un clasficador por cada combinación de parámetros que se le pasan y luego aplica la estrategia de \textbf{KFold} (con k = 10), la cual
 consiste en particionar nuestro conjunto de datos de test en 10 subconjuntos, y entrenar sobre 9 de ellos, dejando un sobconjunto para testear.
 
-También decidimos quedarnos con la mitad de los mails para entrenamiento y la otra mitad para testear. 
+Otra decisión que tomamos al experimentar, fue la de tomar la mitad del set de datos(45K mails) como datos de desarrollo y la otra mitad como datos
+de test. Esta decisión fue tomada con el objetivo de obtener una estimación mas realista sobre la performance utilizada y ademas en muchos de los modelos
+utilizados, entrenar sobre una cantidad de datos tan grande puede llegar a tardar demasiado.
 
 Los resultados obtenidos se encuentran presentados a continuación
 
@@ -86,8 +88,25 @@ En el caso de K nearest neighbors, la mejor configuracion de parametros fue la s
   \item{weights: "uniform"}
 \end{itemize}
 
-obteniendo un score de:
+\textbf{------------------- MODIFICAR ESTO -------------------------} \\
+obteniendo un score de: 0.908566
 
+\begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+  \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+  & \multicolumn{2}{c}{\bfseries K Nearest Neighbors} & \\
+  & & \bfseries p & \bfseries n & \bfseries total \\
+  & p$'$ & \MyBox{21800}{} & \MyBox{700}{} & P$'$ \\[2.4em]
+  & n$'$ & \MyBox{8855}{} & \MyBox{13645}{} & N$'$ \\
+  & total & P & N &
+\end{tabular}
+
+\textbf{------------------- MODIFICAR ESTO -------------------------}
+
+Una conclusión importante que obtuvimos al experimentar con diversos \textit{k}, fue que a medidad que este aumentaba,
+el score obtenido disminuia de manera proporcional. Es por esto que el grid search eligio un \textit{k} muy bajo como el mejor.
+
+Otra particularidad que notamos, fue que al usar el algoritmo de \textit{distance} para calcular la distancia a los vecinos mas cercanos,
+los resultados fueron mejores que al hacerlo con el método \textit{uniform}.
 
 \subsection{Naive Bayes - Gaussian}
 
