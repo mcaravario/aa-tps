@@ -30,7 +30,7 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 pipeline = Pipeline([
 	('extraction',			TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
 	#("features", 			FeatureUnion([("pca", PCA(n_components=50)), ("univ_select", SelectKBest(k=50))])),
-	('selection', 			SelectKBest(k=100)),
+	('selection', 			SelectKBest(k=100, score_func=f_classif)),
 	('classifier', 			DecisionTreeClassifier()) ])
 
 print "Creo pipeline"
@@ -57,15 +57,20 @@ ham_txt_test = ham_txt[len(ham_txt)/2:]
 spam_txt_test = spam_txt[len(ham_txt)/2:]
 
 predictions = best_estimator.predict(spam_txt_test+ham_txt_test)
-pvalues = best_estimator.named_steps["selection"].pvalues_
-pvalues = sorted(pvalues)
-scores = -np.log10(pvalues[-1:-50:-1])
-scores /= scores.max()
+scores = best_estimator.named_steps["selection"].scores_
+scores = sorted(scores)
+# print scores
+# print scores[::-1][:100]
+# scores = -np.log10(scores[::-1][:150][::-1])
+# scores /= scores.max()
+# print scores
 # X_indices = np.arange(X.shape[-1])
-plt.bar(np.arange(len(scores))-.45,scores)
+scores = scores[::-1][:50]
+plt.bar(np.arange(len(scores)),scores)
 plt.title("Seleccion de atributos")
-plt.xlabel("Numero de atributo")
+plt.xlabel("Atributo")
 plt.ylabel("Score")
+plt.savefig("Seleccion_atributos.png")
 plt.show()
 
 
