@@ -38,7 +38,7 @@ A este clasificador se le deben pasar como parametro la cantidad de vecinos cont
 \item \textbf{n\_neighbors:} \textit{1, 3, 5, 7, 10} - La cantidad de vecinos sobre los cuales calcular la distancia
 \item \textbf{weights:} \textit{uniform, distance} - La función de peso que es utilizada a la hora de predecir
 \end{itemize}
-A la hora de experimentar, decidimos utilizar una cantidad acotada de vecinos, ya que al ser una base de datos con 90K mails, este clasificador tarda demasiado
+A la hora de experimentar, decidimos utilizar una cantidad acotada de vecinos(es decir un bajo valor de k), ya que al ser una base de datos con 90K mails, este clasificador tarda demasiado
 en terminar y en muchos casos se obtienen errores de memoria, ya que debe calcular la distancia de la nueva instancia contra todas los demas.
 
 
@@ -52,7 +52,7 @@ Como no hicimos ningun tipo de analisis sobre que distribucion subyacente tienen
 
 
 \begin{itemize}
-\item \textbf{Distribucion Multinomial:} 
+\item \textbf{Distribucion Multinomial:}
 	\begin{itemize}
 	\item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parametro de suavizado. (No entendemos bien como suaviza pero decidimos ver que pasaba).
 	\item \textbf{fit\_prior:} \textit{[True, False]} Sirve para aprender sobre las probabilidades a priori de las clases. Si es falso, se utilizara probabilidad uniforme.
