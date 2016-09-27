@@ -15,11 +15,16 @@ A la hora de experimentar, decidimos utilizar el método \textbf{grid search} co
 Este método se encarga de armar un clasificador por cada combinación de parámetros que se le pasan y luego aplica la estrategia de \textbf{KFold} (con k = 10), la cual
 consiste en particionar nuestro conjunto de datos de test en 10 subconjuntos, y entrenar sobre 9 de ellos, dejando un subconjunto para testear.\\
 
+Una herramienta utilizada para simplificar el entrenamiento del modelo fue la clase \textit{Pipeline}, provista por la
+libreria pipeline de sklearn. Esto nos permitio separar el entrenamiento del modelo en distintas etapas de un pipeline,
+con el objetivo de modularizar el proceso de entrenamiento. \\
+
 Otra decisión que tomamos al experimentar, fue la de tomar la mitad del set de datos(45K mails) como datos de desarrollo y la otra mitad como datos
 de test. Esta decisión fue tomada con el objetivo de obtener una estimación mas realista sobre la performance utilizada y ademas en muchos de los modelos
 utilizados, entrenar sobre una cantidad de datos tan grande puede llegar a tardar demasiado.
 
-Los resultados obtenidos se encuentran presentados a continuación
+Los analisis de resultados y los scores que presentaremos a continuación siguen la metrica \textbf{f1}, ya que consideramos
+que esta es la metrica adecuada para maximizar.
 
 \subsection{Decision Tree}
 En el caso de Decision Tree la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
@@ -28,17 +33,20 @@ En el caso de Decision Tree la mejor configuración de parametros que obtuvimos 
 \item{alpha: 0}
 \end{itemize}
 
-
-Con un score de 0.977214284117
+Obteniendo un score de 0.9772 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
-   & & \bfseries p & \bfseries n & \bfseries total \\
-   & p$'$ & \MyBox{22130}{} & \MyBox{370}{} & P$'$ \\[2.4em]
-   & n$'$ & \MyBox{649}{} & \MyBox{21851}{} & N$'$ \\
-   & total & P & N &
+   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+   & Spam(Real) & \MyBox{22130}{} & \MyBox{370}{} & \\[2.4em]
+   & No Spam(Real) & \MyBox{649}{} & \MyBox{21851}{} & \\
  \end{tabular}
+
+Una observacion realizada fue que los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria
+del dataset, y, aunque en general esto no es bueno, en nuestro caso particular de tener más emails válidos que spam no
+nos trae problemas, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución
+(\textit{false negative}).
 
 \subsection{SVM}
 
@@ -48,15 +56,14 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 \item{C: 3.5}
 \end{itemize}
 
-Con un score de 0.94790000457
+Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
-   & & \bfseries p & \bfseries n & \bfseries total \\
-   & p$'$ & \MyBox{21979}{} & \MyBox{521}{} & P$'$ \\[2.4em]
-   & n$'$ & \MyBox{1759}{} & \MyBox{20741}{} & N$'$ \\
-   & total & P & N &
+   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+   & Spam(Real) & \MyBox{21979}{} & \MyBox{521}{} & \\[2.4em]
+   & No Spam(Real) & \MyBox{1759}{} & \MyBox{20741}{} & \\
  \end{tabular}
 
 
@@ -69,15 +76,14 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 \item{criterion: "entropy"}
 \end{itemize}
 
-Con un score de 0.980175963637
+Obteniendo un score de 0.9801 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
-   & & \bfseries p & \bfseries n & \bfseries total \\
-   & p$'$ & \MyBox{22339}{} & \MyBox{161}{} & P$'$ \\[2.4em]
-   & n$'$ & \MyBox{720}{} & \MyBox{21780}{} & N$'$ \\
-   & total & P & N &
+   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+   & Spam(Real) & \MyBox{22339}{} & \MyBox{161}{} & \\[2.4em]
+   & No Spam(Real) & \MyBox{720}{} & \MyBox{21780}{} & \\
  \end{tabular}
 
 \section{K Nearest Neighbors}
@@ -94,15 +100,14 @@ de atributos obteniendo la siguiente configuracion de parametros como la mejor:
   \item{weights: "distance"}
 \end{itemize}
 
-Con estos parametros obtuvimos un score de: 0.9866
+Obteniendo un score de 0.9866 y la siguiente matriz de confusion:
 
 \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
   & \multicolumn{2}{c}{\bfseries K Nearest Neighbors} & \\
-  & & \bfseries p & \bfseries n & \bfseries total \\
-  & p$'$ & \MyBox{22171}{} & \MyBox{329}{} & P$'$ \\[2.4em]
-  & n$'$ & \MyBox{272}{} & \MyBox{22228}{} & N$'$ \\
-  & total & P & N &
+  & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+  & Spam(Real) & \MyBox{22171}{} & \MyBox{329}{} & \\[2.4em]
+  & No Spam(Real) & \MyBox{272}{} & \MyBox{22228}{} & \\
 \end{tabular}
 
 Una conclusión importante que obtuvimos al experimentar con diversos \textit{k}, fue que a medidad que este aumentaba,
@@ -115,15 +120,14 @@ los resultados fueron mejores que al hacerlo con el método \textit{uniform}.
 
 En este caso, como mencionamos mas arriba, no tenemos ningun parametro por variar. \\
 
-Con un score de 0.740670375899
+Obteniendo un score de 0.7407 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
-   & & \bfseries p & \bfseries n & \bfseries total \\
-   & p$'$ & \MyBox{21800}{} & \MyBox{700}{} & P$'$ \\[2.4em]
-   & n$'$ & \MyBox{8855}{} & \MyBox{13645}{} & N$'$ \\
-   & total & P & N &
+   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+   & Spam(Real) & \MyBox{21800}{} & \MyBox{700}{} &\\[2.4em]
+   & No Spam(Real) & \MyBox{8855}{} & \MyBox{13645}{} &\\
  \end{tabular}
 
 
@@ -135,13 +139,12 @@ En el caso de Naive Bayes - Multinomial la mejor configuración de parametros qu
 \item{alpha: 0}
 \end{itemize}
 
-Con un score de 0.815540223063
+Obteniendo un score de 0.8155 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
-   & & \bfseries p & \bfseries n & \bfseries total \\
-   & p$'$ & \MyBox{21052}{} & \MyBox{1448}{} & P$'$ \\[2.4em]
-   & n$'$ & \MyBox{6011}{} & \MyBox{16489}{} & N$'$ \\
-   & total & P & N &
+   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
+   & Spam(Real) & \MyBox{21052}{} & \MyBox{1448}{} &  \\[2.4em]
+   & No Spam(Real) & \MyBox{6011}{} & \MyBox{16489}{} &  \\
  \end{tabular}
