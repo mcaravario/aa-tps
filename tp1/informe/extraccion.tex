@@ -13,15 +13,10 @@ Además de lo explicado anteriormente, seleccionamos estos otros parámetros:
 \item \textbf{max\_features:} \textit{100} - Para acotar la cantidad de atributos, por default utiliza todos los tokens posibles.
 \item \textbf{stop\_words:} \textit{english} - Para que elimine las palabras más comunes del idioma, como ``a'', ``it'', ``its'', etc.
 \item \textbf{lowercase:} \textit{False} - No transforma las palabras a minúscula por default. Algunos spam están completamente escritos en mayúscula.
-\end{itemize} 
-
-{\Large WARNING!!!! POSIBLE VERSO
-CYNTIA: ES LO QUE HABLAMOS CON FACUNDO LE AGREGUE DOS LINEAS AL FINAL SI LES PARECE LO DEJAMOS ASI Y BORRAMOS EL COMENTARIO}
+\end{itemize}
 
 Decidimos no utilizar \textit{Grid Search} sobre estos parámetros, en particular max\_features, porque creemos que se podría caer en \textit{overfitting} fácilmente. Al utilizar la misma cantidad de atributos para todos los modelos, comparten la representación abstracta del conjunto de emails. Por otro lado esto reduce mucho nuestro espacio de búsqueda haciendo que correr los algoritmos sea una tarea posible en un tiempo razonable.\\
 
-{\Large SI QUIEREN PODEMOS CODEAR LA SOLUCION CON LEMMATIZER, NO ES NADA, PERO NO TENGO GANAS DE HACERLO AHORA
-CYNTIA: YO CREO QUE ESTA BIEN ASI, BORRARIA ESTE COMENTARIO Y LISTO}
 \subsection{Limitaciones}
 
 Al decidir usar solo la técnica de \textit{Bag of Words} podríamos estar perdiendo atributos importantes que determinan si un email es o no spam. Podríamos haber hecho un análisis sobre la estructura de los mismos y buscar (parseando los textos) atributos que nos parecieran representativos del problema como: largo del texto, características de los encabezamos, etc. Sin embargo como obtuvimos buenos resultados utilizando solo la estrategia \textit{Bag of Words} nos pareció que no era necesario.   \\
