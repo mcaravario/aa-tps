@@ -29,8 +29,8 @@ que esta es la metrica adecuada para maximizar.
 \subsection{Decision Tree}
 En el caso de Decision Tree la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{fit\_prior: True}
-\item{alpha: 0}
+\item{\textbf{fit\_prior}: True}
+\item{\textbf{alpha}: 0}
 \end{itemize}
 
 Obteniendo un score de 0.9772 y la siguiente matriz de confusion:
@@ -52,8 +52,8 @@ nos trae problemas, porque es peor identificarlos como spam (\textit{false posit
 
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{kernel: l}
-\item{C: 3.5}
+\item{\textbf{kernel}: l}
+\item{\textbf{C}: 3.5}
 \end{itemize}
 
 Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
@@ -71,9 +71,9 @@ Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
 \subsection{Random Forest}
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{max\_features: "sqrt"}
-\item{n\_estimators: 15}
-\item{criterion: "entropy"}
+\item{\textbf{max\_features}: "sqrt"}
+\item{\textbf{n\_estimators}: 15}
+\item{\textbf{criterion}: "entropy"}
 \end{itemize}
 
 Obteniendo un score de 0.9801 y la siguiente matriz de confusion:
@@ -101,8 +101,8 @@ casos se obtienen errores de memoria, ya que debe calcular la distancia de la nu
 Teniendo en cuenta estas consideraciones obtuvimos la siguiente configuracion de parametros como la mejor:
 
 \begin{itemize}
-  \item{n\_neighbors: 5}
-  \item{weights: "distance"}
+  \item{\textbf{n\_neighbors}: 5}
+  \item{\textbf{weights}: "distance"}
 \end{itemize}
 
 Obteniendo un score de 0.9866 y la siguiente matriz de confusion:
@@ -140,8 +140,8 @@ Obteniendo un score de 0.7407 y la siguiente matriz de confusion:
 
 En el caso de Naive Bayes - Multinomial la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{fit\_prior: True}
-\item{alpha: 0}
+\item{\textbf{fit\_prior}: True}
+\item{\textbf{alpha}: 0}
 \end{itemize}
 
 Obteniendo un score de 0.8155 y la siguiente matriz de confusion:
