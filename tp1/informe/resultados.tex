@@ -12,8 +12,8 @@
 
 \section{Resultados}
 A la hora de experimentar, decidimos utilizar el método \textbf{grid search} combinado con \textbf{cross validation}, provisto por la librería \textit{sklearn} de python.
-Este método se encarga de armar un clasficador por cada combinación de parámetros que se le pasan y luego aplica la estrategia de \textbf{KFold} (con k = 10), la cual
-consiste en particionar nuestro conjunto de datos de test en 10 subconjuntos, y entrenar sobre 9 de ellos, dejando un sobconjunto para testear.
+Este método se encarga de armar un clasificador por cada combinación de parámetros que se le pasan y luego aplica la estrategia de \textbf{KFold} (con k = 10), la cual
+consiste en particionar nuestro conjunto de datos de test en 10 subconjuntos, y entrenar sobre 9 de ellos, dejando un subconjunto para testear.\\
 
 Otra decisión que tomamos al experimentar, fue la de tomar la mitad del set de datos(45K mails) como datos de desarrollo y la otra mitad como datos
 de test. Esta decisión fue tomada con el objetivo de obtener una estimación mas realista sobre la performance utilizada y ademas en muchos de los modelos
@@ -110,7 +110,7 @@ los resultados fueron mejores que al hacerlo con el método \textit{uniform}.
 
 \subsection{Naive Bayes - Gaussian}
 
-En el caso de Naive Bayes - Gaussian. En este caso, como mencionamos mas arriba, no tenemos ningun parametro por variar. \\
+En este caso, como mencionamos mas arriba, no tenemos ningun parametro por variar. \\
 
 Con un score de 0.740670375899
 

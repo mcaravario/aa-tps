@@ -14,10 +14,10 @@ Los árboles tienen el problema de ser condicionados a favor de la clase mayorit
 en nuestro caso particular de tener más emails válidos que spam no nos trae problema, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución (\textit{false negative}).
 
 \subsection{Support Vector Machines}
-La librería ofrece distintas implementaciones de \textit{SVM}, basados en diferentes formulaciones matemáticas y con muchas posiblidades de customización,
-como acotar la cantidad de \textit{support vectors} o usar \textit{kernels} propios. Nos acotamos a probar con 3 tipos distintos de kernels:
+La librería ofrece distintas implementaciones de \textit{SVM}, basados en diferentes formulaciones matemáticas y con muchas posibilidades de customización, como acotar la cantidad de \textit{support vectors} o usar \textit{kernels} propios. Nos acotamos a probar con los siguientes parámetros:
 \begin{itemize}
 \item \textbf{kernel:} \textit{linear, polynomial, rbf} - El tipo de kernel
+\item \textbf{C:} \textit{1.0, 1.5, 2, 2.5, 3, 3.5} - Parámetro de penalización para los errores (se permiten algunos errores, pero se los penaliza)
 \end{itemize}
 
 \subsection{Random Forest}
@@ -45,24 +45,18 @@ en terminar y en muchos casos se obtienen errores de memoria, ya que debe calcul
 
 \subsection{Naive Bayes}
 
-Para este algoritmo encontramos en la libreria Sklearn tres implementacions distintas. Cada una supone una distribucion distinta para la probabilidad de los atributos: Gaussiana, Multinomial y Bernoulli.\\
+Para este algoritmo encontramos en la librería sklearn tres implementaciones distintas. Cada una supone una distribución distinta para la probabilidad de los atributos: Gaussiana, Multinomial y Bernoulli.\\
 
-
-Como no hicimos ningun tipo de analisis sobre que distribucion subyacente tienen los datos, en principio decidimos utilizar las tres. Sin embargo nos encontramos con que Bernoulli esta diseñado para trabajar con features binarias/booleanas motivo por el cual lo descartamos.
-
+Como no hicimos ningún tipo de análisis sobre que distribución subyacente tienen los datos, en principio decidimos utilizar las tres. Sin embargo nos encontramos con que Bernoulli esta diseñado para trabajar con features binarias/booleanas motivo por el cual lo descartamos.
 
 \begin{itemize}
-\item \textbf{Distribucion Multinomial:}
-	\begin{itemize}
-	\item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parametro de suavizado. (No entendemos bien como suaviza pero decidimos ver que pasaba).
-	\item \textbf{fit\_prior:} \textit{[True, False]} Sirve para aprender sobre las probabilidades a priori de las clases. Si es falso, se utilizara probabilidad uniforme.
-	\end{itemize}
-
-
-\item \textbf{Distribucion Gaussiana:} La distribucion gaussiana segun la documentacion tiene parametros, pero en la implentacion cuando intentamos utilizarlos nos dicen que no existen.
-
+\item \textbf{Distribución Multinomial:}
+        \begin{itemize}
+        \item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parámetro de suavizado. 
+        \item \textbf{fit\_prior:} \textit{[True, False]} Se utiliza para aprender sobre las probabilidades a priori de las clases. Si es falso, se utilizara probabilidad uniforme.
+        \end{itemize}
+\item \textbf{Distribución Gaussiana:} La distribución gausiana según la documentación tiene parámetros, pero en la implementación cuando intentamos utilizarlos nos dicen que no existen.
 \end{itemize}
-
 
 
 
