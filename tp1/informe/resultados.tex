@@ -81,26 +81,29 @@ Con un score de 0.980175963637
  \end{tabular}
 
 \section{K Nearest Neighbors}
+Para este caso cabe mencionar que los resultados que presentaremos a continuación fueron obtenidos
+a partir de la experimentación sin usar el método de reducción de dimensionalidad. Esto se debe a que
+cuando experimentamos con la reduccion de los KBest, nuestro modelo entrenaba de manera correcta seleccionando
+ una mejor configuracion de parametros, pero a la hora de predecir resultados sobre nuestros datos de test,
+obteniamos un error de memoria. Para tratar de solucionar esto decidimos bajar la cantidad de features de 100 a 50
+y finalmente a 20, obteniendo en todos los casos el mismo error. Es por esto que decidimos no utilizar la reducción
+de atributos obteniendo la siguiente configuracion de parametros como la mejor:
 
-En el caso de K nearest neighbors, la mejor configuracion de parametros fue la siguiente:
 \begin{itemize}
-  \item{n\_neighbors: 1}
-  \item{weights: "uniform"}
+  \item{n\_neighbors: 5}
+  \item{weights: "distance"}
 \end{itemize}
 
-\textbf{------------------- MODIFICAR ESTO -------------------------} \\
-obteniendo un score de: 0.908566
+Con estos parametros obtuvimos un score de: 0.9866
 
 \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
   & \multicolumn{2}{c}{\bfseries K Nearest Neighbors} & \\
   & & \bfseries p & \bfseries n & \bfseries total \\
-  & p$'$ & \MyBox{21800}{} & \MyBox{700}{} & P$'$ \\[2.4em]
-  & n$'$ & \MyBox{8855}{} & \MyBox{13645}{} & N$'$ \\
+  & p$'$ & \MyBox{22171}{} & \MyBox{329}{} & P$'$ \\[2.4em]
+  & n$'$ & \MyBox{272}{} & \MyBox{22228}{} & N$'$ \\
   & total & P & N &
 \end{tabular}
-
-\textbf{------------------- MODIFICAR ESTO -------------------------}
 
 Una conclusión importante que obtuvimos al experimentar con diversos \textit{k}, fue que a medidad que este aumentaba,
 el score obtenido disminuia de manera proporcional. Es por esto que el grid search eligio un \textit{k} muy bajo como el mejor.
@@ -142,4 +145,3 @@ Con un score de 0.815540223063
    & n$'$ & \MyBox{6011}{} & \MyBox{16489}{} & N$'$ \\
    & total & P & N &
  \end{tabular}
-
