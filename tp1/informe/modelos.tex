@@ -1,17 +1,16 @@
 \section{Modelos}
+
 \subsection{Árbol de decisión}
-El primer modelo que utilizamos es el más fácil para overfittear, y utilizamos distintos efoques greedy con el objetivo de reducir la dimensión del árbol.
-La librería no soporta \textit{prunning}, así que nos centramos en la altura del árbol y la cantidad de muestras por nodo.
+El primer modelo que utilizamos es el más fácil para overfittear, y utilizamos distintos efoques greedy con el objetivo de
+reducir la dimensión del árbol. La librería de sklearn no soporta \textit{prunning}, así que nos centramos en la altura del árbol
+y la cantidad de muestras por nodo.
 \begin{itemize}
 \item \textbf{max\_depth:} \textit{3, 5, 10} - La altura del árbol
 \item \textbf{criterion:} \textit{Gini, Entropy} - La métrica utilizada.
 \item \textbf{max\_features:} \textit{10, 50, 100} - Cuantos atributos tomar en cuenta para la partición.
 \item \textbf{max\_samples\_leaf:} \textit{1, 5 10} - Cuantas muestras puede haber en cada hoja
 \end{itemize}
-{\Large CUIDADO VERSO}
 
-Los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria del dataset, y, aunque en general esto no es bueno,
-en nuestro caso particular de tener más emails válidos que spam no nos trae problema, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución (\textit{false negative}).
 
 \subsection{Support Vector Machines}
 La librería ofrece distintas implementaciones de \textit{SVM}, basados en diferentes formulaciones matemáticas y con muchas posibilidades de customización, como acotar la cantidad de \textit{support vectors} o usar \textit{kernels} propios. Nos acotamos a probar con los siguientes parámetros:
@@ -30,6 +29,7 @@ A diferencia de lo visto en clase, la implementación de este modelo reemplaza l
 \item \textbf{max\_features:} \textit{"sqrt", "None"} - Cuantos atributos a tener en cuenta para la particion.
 \end{itemize}
 
+
 \subsection{K Nearest Neighbors}
 Este modelo consiste en clasificar una nueva instancia en base a la frecuencia de las K instancias mas cercanas.
 Para experimentar con este modelo decidimos utilizar la implementación del clasificador KNeighborsClassifier de la libreria de \text{sklearn}.
@@ -42,22 +42,18 @@ A la hora de experimentar, decidimos utilizar una cantidad acotada de vecinos(es
 en terminar y en muchos casos se obtienen errores de memoria, ya que debe calcular la distancia de la nueva instancia contra todas los demas.
 
 
-
 \subsection{Naive Bayes}
-
-Para este algoritmo encontramos en la librería sklearn tres implementaciones distintas. Cada una supone una distribución distinta para la probabilidad de los atributos: Gaussiana, Multinomial y Bernoulli.\\
-
-Como no hicimos ningún tipo de análisis sobre que distribución subyacente tienen los datos, en principio decidimos utilizar las tres. Sin embargo nos encontramos con que Bernoulli esta diseñado para trabajar con features binarias/booleanas motivo por el cual lo descartamos.
+Para este algoritmo encontramos en la librería sklearn tres implementaciones distintas. Cada una supone una distribución
+distinta para la probabilidad de los atributos: Gaussiana, Multinomial y Bernoulli.\\
+Como no hicimos ningún tipo de análisis sobre que distribución subyacente tienen los datos, en principio decidimos utilizar
+las tres. Sin embargo nos encontramos con que Bernoulli esta diseñado para trabajar con features binarias/booleanas motivo
+por el cual lo descartamos.
 
 \begin{itemize}
 \item \textbf{Distribución Multinomial:}
         \begin{itemize}
-        \item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parámetro de suavizado. 
+        \item \textbf{alpha:} \textit{(0 , 0.001, 0.1, 1.0)} - Parámetro de suavizado.
         \item \textbf{fit\_prior:} \textit{[True, False]} Se utiliza para aprender sobre las probabilidades a priori de las clases. Si es falso, se utilizara probabilidad uniforme.
         \end{itemize}
 \item \textbf{Distribución Gaussiana:} La distribución gausiana según la documentación tiene parámetros, pero en la implementación cuando intentamos utilizarlos nos dicen que no existen.
 \end{itemize}
-
-
-
-
