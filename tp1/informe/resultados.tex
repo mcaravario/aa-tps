@@ -36,12 +36,12 @@ En el caso de Decision Tree la mejor configuración de parametros que obtuvimos 
 Obteniendo un score de 0.9772 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
-   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
+   & \multicolumn{2}{c}{\bfseries Descision Tree} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
    & Spam(Real) & \MyBox{22130}{} & \MyBox{370}{} & \\[2.4em]
    & No Spam(Real) & \MyBox{649}{} & \MyBox{21851}{} & \\
- \end{tabular}
+ \end{tabular} \\\\
 
 Una observacion realizada fue que los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria
 del dataset, y, aunque en general esto no es bueno, en nuestro caso particular de tener más emails válidos que spam no
@@ -59,8 +59,8 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
-   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
+   & \multicolumn{2}{c}{\bfseries SVM} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
    & Spam(Real) & \MyBox{21979}{} & \MyBox{521}{} & \\[2.4em]
    & No Spam(Real) & \MyBox{1759}{} & \MyBox{20741}{} & \\
@@ -79,7 +79,7 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 Obteniendo un score de 0.9801 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
    & \multicolumn{2}{c}{\bfseries Random Forest} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
    & Spam(Real) & \MyBox{22339}{} & \MyBox{161}{} & \\[2.4em]
@@ -92,8 +92,13 @@ a partir de la experimentación sin usar el método de reducción de dimensional
 cuando experimentamos con la reduccion de los KBest, nuestro modelo entrenaba de manera correcta seleccionando
  una mejor configuracion de parametros, pero a la hora de predecir resultados sobre nuestros datos de test,
 obteniamos un error de memoria. Para tratar de solucionar esto decidimos bajar la cantidad de features de 100 a 50
-y finalmente a 20, obteniendo en todos los casos el mismo error. Es por esto que decidimos no utilizar la reducción
-de atributos obteniendo la siguiente configuracion de parametros como la mejor:
+y finalmente a 20, obteniendo en todos los casos el mismo error. \\
+Otra decision tomada a la hora de experimentar fue la de utilizar una cantidad acotada de vecinos(es decir un bajo valor de k),
+ya que al ser una base de datos con 90K mails, este clasificador tarda demasiado en terminar y en muchos
+casos se obtienen errores de memoria, ya que debe calcular la distancia de la nueva instancia contra todas los demas.
+
+
+Teniendo en cuenta estas consideraciones obtuvimos la siguiente configuracion de parametros como la mejor:
 
 \begin{itemize}
   \item{n\_neighbors: 5}
@@ -103,12 +108,12 @@ de atributos obteniendo la siguiente configuracion de parametros como la mejor:
 Obteniendo un score de 0.9866 y la siguiente matriz de confusion:
 
 \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-  \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
+  \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
   & \multicolumn{2}{c}{\bfseries K Nearest Neighbors} & \\
   & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
   & Spam(Real) & \MyBox{22171}{} & \MyBox{329}{} & \\[2.4em]
   & No Spam(Real) & \MyBox{272}{} & \MyBox{22228}{} & \\
-\end{tabular}
+\end{tabular}\\\\
 
 Una conclusión importante que obtuvimos al experimentar con diversos \textit{k}, fue que a medidad que este aumentaba,
 el score obtenido disminuia de manera proporcional. Es por esto que el grid search eligio un \textit{k} muy bajo como el mejor.
@@ -123,8 +128,8 @@ En este caso, como mencionamos mas arriba, no tenemos ningun parametro por varia
 Obteniendo un score de 0.7407 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
-   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
+   & \multicolumn{2}{c}{\bfseries Naive Bayes Gaussian} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
    & Spam(Real) & \MyBox{21800}{} & \MyBox{700}{} &\\[2.4em]
    & No Spam(Real) & \MyBox{8855}{} & \MyBox{13645}{} &\\
@@ -142,8 +147,8 @@ En el caso de Naive Bayes - Multinomial la mejor configuración de parametros qu
 Obteniendo un score de 0.8155 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
-   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} &
-   & \multicolumn{2}{c}{\bfseries Random Forest} & \\
+   \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
+   & \multicolumn{2}{c}{\bfseries Naive Bayes Multinomial} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
    & Spam(Real) & \MyBox{21052}{} & \MyBox{1448}{} &  \\[2.4em]
    & No Spam(Real) & \MyBox{6011}{} & \MyBox{16489}{} &  \\
