@@ -1,11 +1,38 @@
 \section{Discusión}
 
+La siguiente tabla resume todos los resultados que mostramos en la sección anterior, no se encuentra KNN porque no pudimos correrlo con la reduccion de atributos.
+
+\begin{center}
+    \begin{tabular}{ | p{3cm} | p{2cm} | p{2.2cm} | p{1.5cm} | p{1.5cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Naive Bayes Gaussian & Naive Bayes Multinomial & SVM & Decision Tree & Random Forest\\ \hline
+    Numero de Entrenamientos & 10     &  80      & 180    & 120    &  200      \\ \hline
+    Tiempo de Entrenamiento  & 5.4min & 50.4 min & 8.35hs & 1.08hs &  2.2hs    \\ \hline
+    Score                    & 0.7407 & 0.8155   & 0.9479 & 0.9522 & 0.9801    \\ \hline
+    \end{tabular}
+\end{center} 
+
+A continuación mostramos los resultados para los mismos clasificadores con los mismos parámetros pero sin reducción de dimensionalidad. No probamos con todos los clasificadores por cuestiones de tiempo de ejecución. Los resultados obtenidos fueron los siguientes:
+
+\begin{center}
+    \begin{tabular}{ | p{3cm} | p{2cm} | p{2.2cm} | p{1.5cm} | p{1.5cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Naive Bayes Gaussian & Naive Bayes Multinomial & KNN & Decision Tree & Random Forest\\ \hline
+    Numero de Entrenamientos & 10      & 80       &  100     &  &  \\ \hline
+    Tiempo de Entrenamiento  & 6.2 min & 52.6 min &  2.33hs  &  &  \\ \hline
+    Score                    & 0.6850  & 0.6724   &  0.9866  &  &  \\ \hline
+    \end{tabular}
+\end{center} 
+
+
+Como podemos ver, para Naive Bayes el cual presupone que los atributos son independientes, el hecho de hacer una selección de los mismos mejora los resultados. Sin embargo para métodos con suposiciones menos fuertes como Decision Tree o Random Forest, los cuales dan buenos resultados sin reducción, agregarla no es algo muy significativo.\\
+
 En base a la experimentación realizada, podemos concluir que la elección de los atributos es una parte fundamental para obtener un buen clasificador. Sobre todo cuando se trabaja con suposiciones fuertes sobre los mismos como en el caso de Naive Bayes. Fue el clasificador que peores resultados arrojo y creemos que se debe a la suposición que hace sobre la independencia de los atributos. \\
 
-Por otro lado también notamos como fácilmente la cantidad de combinaciones se hace exponencial, motivo por el cual es importante entender cual es la naturaleza de nuestro problema, para poder elegir los clasificadores que mejor se adapten a esas características y variar los parámetros que son realmente significativos. En resumen, aprendimos sobre las distintas etapas que consiste crear un buen clasificador, y cómo cada decisión tomada afecta los pasos siguientes.
+
+Por otro lado también notamos como fácilmente la cantidad de combinaciones se hace exponencial y podemos tener problemas de memoria o tiempos prohibitivos a la hora de obtener resultados como con KNN. Por este motivo creemos que es importante entender cual es la naturaleza de nuestro problema, para poder elegir los clasificadores que mejor se adapten a esas características y variar los parámetros que son realmente significativos. En resumen, aprendimos sobre las distintas etapas que conlleva crear un buen clasificador, y cómo cada decisión tomada afecta los pasos siguientes.\\
 
 
+Dado que todos los modelos los probamos con un data set que no utilizamos para entrenar, a la hora de elegir el clasificador nos centramos en el score que obtuvo cada uno,  Tomando esa métrica el mejor modelo fue KNN. Sin embargo tuvimos muchos problemas de memoria a la hora de clasificar. El siguiente mejor resulto fue dado por Random Forest, que obtuvo un resultado apenas menor que KNN, pero se comporto mejor a la hora de clasificar. Por estos motivos nuestro clasificar elegido fue Random Forest.\\
 
-
- 
-
+%Discusión: Analizar los resultados, buscando responder cuestiones como, por ejemplo: ¿cuáles son los atributos encontrados con mayor poder predictivo?, ¿cuán sensibles fueron los algoritmos a las técnicas de reducción de dimensionalidad consideradas?, ¿resultó clara la elección del algoritmo para la competencia, o hubo que poner en la balanza distintos factores?

@@ -29,24 +29,29 @@ que esta es la metrica adecuada para maximizar.
 \subsection{Decision Tree}
 En el caso de Decision Tree la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{\textbf{fit\_prior}: True}
-\item{\textbf{alpha}: 0}
+\item \textbf{max\_depth:} \textit{100}
+\item \textbf{criterion:} \textit{Entropy}
+\item \textbf{max\_features:} \textit{None}
 \end{itemize}
 
-Obteniendo un score de 0.9772 y la siguiente matriz de confusion:
+
+Entrenando con 10 folds para cada uno de los 12 candidatos, con un total de 120 entrenamientos: tiempo de ejecución $\simeq 1.08hs$ \\  %501.1min 
+
+Obteniendo un score de 0.9522 y la siguiente matriz de confusión:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
    & \multicolumn{2}{c}{\bfseries Descision Tree} & \\
    & & \bfseries Spam(Predicho) & \bfseries No Spam(Predicho) & \bfseries \\
-   & Spam(Real) & \MyBox{22130}{} & \MyBox{370}{} & \\[2.4em]
-   & No Spam(Real) & \MyBox{649}{} & \MyBox{21851}{} & \\
+   & Spam(Real) & \MyBox{21639}{} & \MyBox{861}{} & \\[2.4em]
+   & No Spam(Real) & \MyBox{1268}{} & \MyBox{21232}{} & \\
  \end{tabular} \\\\
 
-Una observacion realizada fue que los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria
+Una observación realizada fue que los árboles tienen el problema de ser condicionados a favor de la clase mayoritaria
 del dataset, y, aunque en general esto no es bueno, en nuestro caso particular de tener más emails válidos que spam no
 nos trae problemas, porque es peor identificarlos como spam (\textit{false positive}) que errar por preacución
 (\textit{false negative}).
+
 
 \subsection{SVM}
 
@@ -56,7 +61,11 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 \item{\textbf{C}: 3.5}
 \end{itemize}
 
+Entrenando con 10 folds para cada uno de los 18 candidatos, con un total de 180 entrenamientos: tiempo de ejecución $\simeq 8.35hs$ \\  %501.1min 
+
+
 Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
+
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
    \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft}} &
@@ -68,6 +77,7 @@ Obteniendo un score de 0.9479 y la siguiente matriz de confusion:
 
 
 
+
 \subsection{Random Forest}
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
@@ -75,6 +85,10 @@ En el caso de random forest la mejor configuración de parametros que obtuvimos 
 \item{\textbf{n\_estimators}: 15}
 \item{\textbf{criterion}: "entropy"}
 \end{itemize}
+
+
+Entrenando con 10 folds para cada uno de los 20 candidatos, con un total de 200 entrenamientos: tiempo de ejecución $\simeq 2.2hs$ \\  %501.1min 
+
 
 Obteniendo un score de 0.9801 y la siguiente matriz de confusion:
 
@@ -97,6 +111,8 @@ Otra decision tomada a la hora de experimentar fue la de utilizar una cantidad a
 ya que al ser una base de datos con 90K mails, este clasificador tarda demasiado en terminar y en muchos
 casos se obtienen errores de memoria, ya que debe calcular la distancia de la nueva instancia contra todas los demas.
 
+Entrenando con 10 folds para cada uno de los 10 candidatos, con un total de 100 entrenamientos: tiempo de ejecución $\simeq 2.33hs$ \\  %501.1min 
+
 
 Teniendo en cuenta estas consideraciones obtuvimos la siguiente configuracion de parametros como la mejor:
 
@@ -115,15 +131,20 @@ Obteniendo un score de 0.9866 y la siguiente matriz de confusion:
   & No Spam(Real) & \MyBox{272}{} & \MyBox{22228}{} & \\
 \end{tabular}\\\\
 
+
 Una conclusión importante que obtuvimos al experimentar con diversos \textit{k}, fue que a medidad que este aumentaba,
 el score obtenido disminuia de manera proporcional. Es por esto que el grid search eligio un \textit{k} muy bajo como el mejor.
 
 Otra particularidad que notamos, fue que al usar el algoritmo de \textit{distance} para calcular la distancia a los vecinos mas cercanos,
 los resultados fueron mejores que al hacerlo con el método \textit{uniform}.
 
+
 \subsection{Naive Bayes - Gaussian}
 
 En este caso, como mencionamos mas arriba, no tenemos ningun parametro por variar. \\
+
+Entrenando con 10 folds para 1 candidato, con un total de 10 entrenamientos: tiempo de ejecución $\simeq 5.4min$ \\   
+
 
 Obteniendo un score de 0.7407 y la siguiente matriz de confusion:
 
@@ -144,6 +165,9 @@ En el caso de Naive Bayes - Multinomial la mejor configuración de parametros qu
 \item{\textbf{alpha}: 0}
 \end{itemize}
 
+Entrenando con 10 folds para cada uno de los 8 candidatos, con un total de 80 entrenamientos: tiempo de ejecución $\simeq 50.4min$ \\   
+
+
 Obteniendo un score de 0.8155 y la siguiente matriz de confusion:
 
  \begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
@@ -153,3 +177,5 @@ Obteniendo un score de 0.8155 y la siguiente matriz de confusion:
    & Spam(Real) & \MyBox{21052}{} & \MyBox{1448}{} &  \\[2.4em]
    & No Spam(Real) & \MyBox{6011}{} & \MyBox{16489}{} &  \\
  \end{tabular}
+
+

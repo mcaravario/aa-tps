@@ -5,11 +5,11 @@ El primer modelo que utilizamos es el más fácil para overfittear, y utilizamos
 reducir la dimensión del árbol. La librería de sklearn no soporta \textit{prunning}, así que nos centramos en la altura del árbol
 y la cantidad de muestras por nodo.
 \begin{itemize}
-\item \textbf{max\_depth:} \textit{3, 5, 10} - La altura del árbol
+\item \textbf{max\_depth:} \textit{10, 50, 100} - La altura del árbol
 \item \textbf{criterion:} \textit{Gini, Entropy} - La métrica utilizada.
-\item \textbf{max\_features:} \textit{10, 50, 100} - Cuantos atributos tomar en cuenta para la partición.
-\item \textbf{max\_samples\_leaf:} \textit{1, 5 10} - Cuantas muestras puede haber en cada hoja
+\item \textbf{max\_features:} \textit{"sqrt", None} - Cuantos atributos tomar en cuenta para la partición.
 \end{itemize}
+
 
 
 \subsection{Support Vector Machines}
