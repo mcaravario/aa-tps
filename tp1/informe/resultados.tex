@@ -57,7 +57,7 @@ nos trae problemas, porque es peor identificarlos como spam (\textit{false posit
 
 En el caso de random forest la mejor configuración de parametros que obtuvimos con el grid search fue la siguiente:
 \begin{itemize}
-\item{\textbf{kernel}: l}
+\item{\textbf{kernel}: linear}
 \item{\textbf{C}: 3.5}
 \end{itemize}
 
@@ -100,7 +100,7 @@ Obteniendo un score de 0.9801 y la siguiente matriz de confusion:
    & No Spam(Real) & \MyBox{720}{} & \MyBox{21780}{} & \\
  \end{tabular}
 
-\section{K Nearest Neighbors}
+\subsection{K Nearest Neighbors}
 Para este caso cabe mencionar que los resultados que presentaremos a continuación fueron obtenidos
 a partir de la experimentación sin usar el método de reducción de dimensionalidad. Esto se debe a que
 cuando experimentamos con la reduccion de los KBest, nuestro modelo entrenaba de manera correcta seleccionando
