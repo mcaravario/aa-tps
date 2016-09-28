@@ -28,26 +28,14 @@ ham_txt_train = ham_txt[:len(ham_txt)/2]
 spam_txt_train = spam_txt[:len(spam_txt)/2]
 
 print "Cargando data frame..."
-# Armo un dataset de Pandas
-# http://pandas.pydata.org/
-# df = pd.DataFrame(ham_txt_train+spam_txt_train, columns=['text'])
-# df['class'] = ['ham' for _ in range(len(ham_txt_train))]+['spam' for _ in range(len(spam_txt_train))]
-# del ham_txt_train
-# del spam_txt_train
-
-# # Preparo data para clasificar
-# y = df['class']
-# X = df['text']
 
 X = ham_txt_train+spam_txt_train
 y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train))]
 
-selection = SelectKBest(k=100)
-#combined_features = FeatureUnion([("pca", PCA(n_components=30)), ("univ_select", selection)])
 
 pipeline = Pipeline([
 	('extraction',			TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
-	('selection',    		selection),
+	('selection',    		SelectKBest(k=100)),
 	('classifier', 			RandomForestClassifier())])
 
 print "Creo pipeline"
