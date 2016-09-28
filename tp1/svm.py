@@ -14,6 +14,7 @@ from sklearn.grid_search import GridSearchCV
 from nltk import word_tokenize, WordNetLemmatizer
 from nltk.corpus import stopwords
 from collections import Counter
+from sklearn.feature_selection import SelectKBest, f_classif, chi2
 
 
 # Leo los mails (poner los paths correctos).)
@@ -31,13 +32,18 @@ y = [0 for _ in range(len(ham_txt_train))]+[1 for _ in range(len(spam_txt_train)
 
 
 pipeline = Pipeline([
-	('tfidf_vectorizer',	TfidfVectorizer(max_features=100, stop_words="english", lowercase=False)),
+	('tfidf_vectorizer',	TfidfVectorizer(max_features=1000, stop_words="english", lowercase=False)),
+    ("selection",           SelectKBest(k=100)),
 	('classifier', 			SVC(decision_function_shape="ovr")) ])
 
 print "Creo pipeline"
 
 # Configuracion de Grid search
-param_grid = 	{"classifier__kernel": ["linear", "poly", "rbf"]}
+param_grid = 	{"classifier__kernel": ["linear", "poly", "rbf"],
+				 "classifier__C": (1.0, 1.5, 2, 2.5, 3, 3.5) 
+}
+
+
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)
 print "Termine de entrenar"

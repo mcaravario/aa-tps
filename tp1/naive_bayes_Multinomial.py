@@ -70,8 +70,6 @@ param_grid =    {   'classifier__alpha': (0 , 0.001, 0.1, 1.0),
 }
 
 
-
-
 grid_search = GridSearchCV(pipeline, n_jobs=1, pre_dispatch=1,scoring="f1", cv=10, param_grid=param_grid, verbose=10)
 grid_search.fit(X, y)
 print "Termine de entrenar"
