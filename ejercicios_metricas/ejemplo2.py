@@ -6,22 +6,22 @@ y_actual = ["perro"] * 18 + ["gato"] * 980 + ["perro"] * 5
 y_pred_1 = ["gato"] * 980 + ["perro"] * 20 + ["gato"] * 3
 y_pred_2 = ["perro"] * 40 + ["gato"] * 900 + ["perro"] * 60 + ["gato"] * 3
 
-print "Clasificador A"
+print "Clasificador A (gato)"
 metricas.summary(y_actual, y_pred_1, positive_label="gato")
 
-print "Clasificador B"
+print "Clasificador B (gato)"
 metricas.summary(y_actual, y_pred_2, positive_label="gato")
 
 ##
 ## COMPLETAR
 print "Clasificador A (perro)"
-print "completar"
+metricas.summary(y_actual, y_pred_1, positive_label="perro")
 
 print "Clasificador B (perro)"
-print "completar"
-##
+metricas.summary(y_actual, y_pred_1, positive_label="perro")
 
-exit(0)  # Comentar para parte 2.
+
+#exit(0)  # Comentar para parte 2.
 
 y_actual = ["perro"] * 100 + ["gato"] * 900 + ["perro"] * 80
 y_pred =   ["perro"] * 80 + ["gato"] * 800 + ["perro"] * 200
