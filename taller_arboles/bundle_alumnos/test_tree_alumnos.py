@@ -1,7 +1,8 @@
+#!/usr/bin/python
 from tree_aa_alumnos import *
 import pylab
 
-# Armamos dataset tennis 
+# Armamos dataset tennis
 X=np.array([["Sol","Calor","Alta","Debil"],
 ["Sol","Calor","Alta","Fuerte"],
 ["Nublado","Calor","Alta","Debil"],
@@ -33,4 +34,3 @@ print 'Predigo',prediccion_ejemplo
 # Ploteo el arbol para mirarlo
 fig= dt.plot_graph()
 pylab.show()
-
