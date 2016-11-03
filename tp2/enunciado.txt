@@ -1,0 +1,35 @@
+Trabajo Práctico 2 - Aprendizaje por Refuerzos
+
+Introducción
+El Aprendizaje por refuerzos o Reinforcement learning es un área del aprendizaje automático ortogonal a los modelos de aprendizaje supervisado que ya exploramos (clasificación/ regresión). Permite modelar problemas en los cuales un agente interactúa con su entorno dinámicamente; no busca predecir una etiqueta o un valor, sino dado un estado lograr decidir sobre un conjunto posible de acciones.
+
+El objetivo de este trabajo práctico es construir un agente para un juego y estudiar cómo se desempeña. (¿Qué es aprender?, ¿Aprende? ¿No aprende? ¿A qué velocidad lo hace? ¿Generaliza para cualquier escenario?, etc.)
+
+Ta-te-ti como ejemplo
+El ta-te-ti es un juego simple de dos agentes usado ampliamente como ejemplo de Q-learning (ver implementación posible en https://gist.github.com/fheisler/430e70fa249ba30e707f). En la implementación sugerida podemos ver que se modela el juego de una manera sencilla; pero tras interactuar con el agente, descubrimos que realmente aprende a jugar. A su vez este ejemplo tiene la ventaja de que el espacio de estados y movimientos es relativamente chico en comparación con otros juegos. Además, los estados y acciones son fácilmente representables.
+
+En la implementación sugerida, se proponen, en lo que nos concierne, dos tipos de jugadores: un jugador que usa una estrategia de Q-learning para aprender (al que llamamos "bot") y un jugador "random" que lo único que hace es transitar de un estado a otro eligiendo de forma al azar entre las posibles acciones.
+
+La siguiente figura muestra la tasa de partidas ganadas (o aciertos) en función del tiempo cuando compiten dos agentes de tipo "bot" (Q-learning). Cuál agente comienza se va alternando partida a partida, de modo que cada jugador aprenda a jugar en los dos roles (comenzando y no). Se puede observar que, al principio, los agentes ganan o pierden casi al 50%, pues solo exploran sin tener mucha noción de cuál es la estrategia ganadora. Luego se ve que empiezan a converger hacia una mejor estrategia. A medida que ambos mejoran su estrategia, la tasa de partidas ganadas cae, hasta llegar a un 25% para cada uno, lo cual se debe a que ahora en la mayoría de las partidas los agentes empatan.
+
+figura1
+
+Si se emplea el mismo esquema de experimento, pero esta vez se usa un jugador "bot" (Q-learning) y uno "random" (que juega al azar), se ve cómo esta vez el jugador con estrategia se despega, mejorando notablemente y derrotando al "random" la gran mayoría de las veces.
+
+figura2
+
+Enunciado
+En el trabajo práctico deberán modelar el juego 4 en línea (también conocido como "4 en raya" o "conecta 4") y hacer un análisis del desarrollo y los resultados obtenidos.
+
+Reglas del juego según Wikipedia: "El objetivo de Conecta 4 es alinear cuatro fichas sobre un tablero formado por seis filas y siete columnas. Cada jugador dispone de 21 fichas de un color (por lo general, rojas o amarillas). Por turnos, los jugadores deben introducir una ficha en la columna que prefieran (siempre que no esté completa) y ésta caerá a la posición más baja. Gana la partida el primero que consiga alinear cuatro fichas consecutivas de un mismo color en horizontal, vertical o diagonal. Si todas las columnas están llenas pero nadie ha hecho una fila válida, hay empate."
+
+figura3
+
+Se pide programar un agente que aprenda a jugar a este juego, basado en el algoritmo de Q-learning. A su vez, deben estudiarse distintos factores del aprendizaje y del modelado del mismo. Por ejemplo: ¿Cuál es el espacio de estados?, ¿cuán rápido se puede explorar?, ¿cómo cambia la inicialización de Q con respecto a la velocidad de aprendizaje?, ¿qué importancia tiene la temperatura y la velocidad con que se enfría el sistema si se decide usar la distribution Boltzmann?, ¿qué efecto tiene cambiar la tasa de aprendizaje?, etc.
+
+Como se mencionó, el objetivo del trabajo práctico estudiar cómo se comporta el agente, si bien es necesario programarlo, en la corrección se pondrá más énfasis en el estudio y diseño de las preguntas científicas (con su posterior análisis) que en el desempeño del agente. Es decir, nos interesa más que transiten una experiencia que les permita haber aprendido y explorado este paradigma frente al hecho de que hagan un agente imbatible.
+
+Entrega
+La entrega consistirá en el código que implementen y un informe escrito. Se espera un informe de unas 4 páginas, pero en ningún caso deberá superar las 6 páginas. Se sugiere fuertemente implementar el código en Python, aunque se aceptarán implementaciones en cualquier lenguaje de programación (siempre y cuando se expliquen las condiciones necesarias para ejecutarlo).
+
+La modalidad de entrega será similar al TP1. La fecha límite de entrega es el martes 15 de noviembre de 2016 a las 23:59h, por email a: aa.dc.uba(a)gmail.com con el asunto: "TP2 apellido1 apellido2 apellido3".
