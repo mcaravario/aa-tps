@@ -1,5 +1,7 @@
 import random
 from itertools import groupby, chain
+import matplotlib.pyplot as plt
+from sklearn.grid_search import ParameterGrid
 
 def diagonalsPos (matrix, cols, rows):
     """Get positive diagonals, going from bottom-left to top-right."""
@@ -13,8 +15,8 @@ def diagonalsNeg (matrix, cols, rows):
 
 NONE = "."
 
-class TicTacToe:
-    def __init__(self, playerX, playerO, cols = 7, rows = 6, requiredToWin = 4):
+class CuatroEnLinea:
+    def __init__(self, playerX, playerO, cols = 3, rows = 3, requiredToWin = 3):
         """Create a new game."""
         self.cols = cols
         self.rows = rows
@@ -23,9 +25,10 @@ class TicTacToe:
         self.playerX, self.playerO = playerX, playerO
         self.playerX_turn = random.choice([True, False])
 
+
     def play_game(self):
-        self.playerX.start_game('X')
-        self.playerO.start_game('O')
+        self.playerX.start_game('X', self.cols, self.rows)
+        self.playerO.start_game('O', self.cols, self.rows)
         while True: #yolo
             if self.playerX_turn:
                 player, char, other_player = self.playerX, 'X', self.playerO
@@ -40,10 +43,13 @@ class TicTacToe:
             if self.player_wins(char):
                 player.reward(1, self.board)
                 other_player.reward(-1, self.board)
+                return player
+
                 break
             if self.board_full(): # tie game
                 player.reward(0.5, self.board)
-                other_player.reward(0.5, self.board)
+                other_player.reward(0.5, self.board)   
+                return None
                 break
             other_player.reward(0, self.board)
             self.playerX_turn = not self.playerX_turn
@@ -87,10 +93,10 @@ class TicTacToe:
         print "\n"
 
 class Player(object):
-    def __init__(self):
+    def __init__(self,):
         self.breed = "human"
 
-    def start_game(self, char):
+    def start_game(self, char, cols, row):
         print "\nNew game!"
 
     def move(self, board):
@@ -100,30 +106,37 @@ class Player(object):
         print "{} rewarded: {}".format(self.breed, value)
 
     def available_moves(self, board):
-        return [i for i in xrange(cols) if board[i][0] == NONE]
+        return [i for i in xrange(len(board)) if board[i][0] == NONE]
 
+
+class RandomPlayer(Player):
+    def __init__(self):
+        self.breed = "random"
+
+    def reward(self, value, board):
+        pass
+
+    def start_game(self, char, cols, rows):
+        pass
+
+    def move(self, board):
+        return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    def __init__(self, epsilon=0.2, alpha=0.3, gamma=0.9):
+    def __init__(self, epsilon=0.2, learning_rate=0.3, discount=0.9):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
         self.epsilon = epsilon # e-greedy chance of random exploration
-        self.alpha = alpha # learning rate
-        self.gamma = gamma # discount factor for future rewards
+        self.learning_rate = learning_rate # learning rate
+        self.discount = discount # discount factor for future rewards
 
-    def start_game(self, char):
+    def start_game(self, char, cols, rows):
         self.last_board = [[NONE] * rows for _ in range(cols)]
         self.last_move = None
 
-    def getQ(self, state, action):
-        # encourage exploration; "optimistic" 1.0 initial values
-        if self.q.get((state, action)) is None:
-            self.q[(state, action)] = 1.0
-        return self.q.get((state, action))
-
     def move(self, board):
-        self.last_board = tuple(board)
+        self.last_board = tuple([tuple(col) for col in board])
         actions = self.available_moves(board)
 
         if random.random() < self.epsilon: # explore!
@@ -145,25 +158,78 @@ class QLearningPlayer(Player):
 
     def reward(self, value, board):
         if self.last_move:
-            self.learn(self.last_board, self.last_move, value, tuple(board))
+            self.learn(self.last_board, self.last_move, value, tuple([tuple(col) for col in board]))
+
+    def getQ(self, state, action):
+        # encourage exploration; "optimistic" 1.0 initial values
+        if self.q.get((state, action)) is None:
+            self.q[(state, action)] = 1.0
+        return self.q.get((state, action))
 
     def learn(self, state, action, reward, result_state):
         prev = self.getQ(state, action)
         maxqnew = max([self.getQ(result_state, a) for a in self.available_moves(state)])
-        self.q[(state, action)] = prev + self.alpha * ((reward + self.gamma*maxqnew) - prev)
+        self.q[(state, action)] = prev + self.learning_rate * ((reward + self.discount*maxqnew) - prev)
 
+def gridSeach(param_grid):
+    grid = ParameterGrid(param_grid)
+    for params in grid:
+        p1 = QLearningPlayer(params["epsilon"], params["learning_rate"], params["discount"])
+        p2 = RandomPlayer()
+
+        p1_wins = 0
+
+        for i in xrange(1,500000):
+            t = CuatroEnLinea(p1, p2)
+            winner = t.play_game()
+            if winner == p1:
+                p1_wins += 1
+
+            if p1_wins / float(i) > 0.7:
+                return params
+    return None
+
+# [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+def experis():
+    param_grid = {"epsilon": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+    best_params = gridSeach(param_grid)
+    if best_params:
+        print best_params
+    print "No se encontraron buenos parametros"
+
+experis()
 
 # p1 = QLearningPlayer()
-# p2 = QLearningPlayer()
+# p2 = RandomPlayer()
 
-# for i in xrange(0,200000):
-#     t = TicTacToe(p1, p2)
-#     t.play_game()
+# p1_wins = [0]
+# p2_wins = [0]
 
-p1 = Player()
+# for i in xrange(0,500000):
+#     t = CuatroEnLinea(p1, p2)
+#     winner = t.play_game()
+#     if winner == p1:
+#         p1_wins.append(p1_wins[-1]+1)
+#         p2_wins.append(p2_wins[-1])
+#     elif winner == p2:
+#         p2_wins.append(p2_wins[-1]+1)
+#         p1_wins.append(p1_wins[-1])
+#     else:
+#         p1_wins.append(p1_wins[-1])        
+#         p2_wins.append(p2_wins[-1])
+
+# for i in xrange(1, 500001):
+#     p1_wins[i] = p1_wins[i]/float(i)
+#     p2_wins[i] = p2_wins[i]/float(i)
+
+# plt.plot(p1_wins)
+# plt.plot(p2_wins)
+# plt.show()
+
+# p1 = Player()
 # p2.epsilon = 0
-p2 = Player()
+# # p2 = Player()
 
-while True:
-    t = TicTacToe(p1, p2)
-    t.play_game()
+# # while True:
+# #     t = CuatroEnLinea(p1, p2)
+# #     t.play_game()
