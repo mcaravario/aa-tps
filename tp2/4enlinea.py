@@ -200,25 +200,29 @@ def gridSeach(param_grid):
         p1 = QLearningPlayer(params["epsilon"], params["learning_rate"], params["discount"], params["initialQ"])
         p2 = RandomPlayer()
 
-        p1_wins = 0
-        
         print j
+        
+        p1_wins = 0
         for i in xrange(1,200001):
             t = CuatroEnLinea(p1, p2)
             winner = t.play_game()
             if winner == p1:
                 p1_wins += 1
 
-            if i > 10000 and p1_wins / float(i) > 0.75:
-                ans.append(params)
+            if i == 200000 and p1_wins / float(i) > 0.75:
+                ans.append((p1_wins/float(i),params))
                 break
 
         j += 1
+    ans.sorted()
     return ans
 
 # [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
 def experis():
-    param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+    # param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+    param_grid = {"epsilon": [0.1, 0.2], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0], "initialQ": [0.0]}
+    # param_grid = {"epsilon": [0.1], "learning_rate": [0.1], "discount": [1.0], "initialQ": [0.0]}
+    
     best_params = gridSeach(param_grid)
     if best_params:
         print best_params
