@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import random
 from itertools import groupby, chain
 import matplotlib.pyplot as plt
@@ -20,10 +21,10 @@ NONE = "."
 # - cantidad de iteraciones
 # - q iniciales
 # - rewards
-# - e-greedy: epsilon, learning_rate, discount
+# - e-greedy: epsilon, learning_rate, unt
 # - softmax: temp inicial, funcion de decaimiento
 
-###### TO DO: 
+###### TO DO:
 ###### PROBAR QPLAYER VS QPLAYER
 ###### PROBAR CON DISTINTOS Q INICIALES
 ######    - RANDOM -> DA MAL
@@ -67,7 +68,7 @@ class CuatroEnLinea:
                 break
             if self.board_full(): # tie game
                 player.reward(0.5, self.board)
-                other_player.reward(0.5, self.board)   
+                other_player.reward(0.5, self.board)
                 return None
                 break
             other_player.reward(0, self.board)
@@ -142,7 +143,7 @@ class RandomPlayer(Player):
         return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    def __init__(self, epsilon=0.1, learning_rate=0.9, discount=0.7, initialQ=0.0):
+    def __init__(self, epsilon=0.1, learning_rate=0.9, discount=0.9, initialQ=0.0):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
@@ -201,7 +202,7 @@ def gridSeach(param_grid):
         p2 = RandomPlayer()
 
         print j
-        
+
         p1_wins = 0
         for i in xrange(1,200001):
             t = CuatroEnLinea(p1, p2)
@@ -220,9 +221,9 @@ def gridSeach(param_grid):
 # [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
 def experis():
     # param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-    param_grid = {"epsilon": [0.1, 0.2], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [0.7], "initialQ": [0.0]}
+    param_grid = {"epsilon": [0.1, 0.2], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [0.9], "initialQ": [0.0]}
     # param_grid = {"epsilon": [0.1], "learning_rate": [0.1], "discount": [1.0], "initialQ": [0.0]}
-    
+
     best_params = gridSeach(param_grid)
     if best_params:
         print best_params
@@ -247,7 +248,7 @@ experis()
 #         p2_wins.append(p2_wins[-1]+1)
 #         p1_wins.append(p1_wins[-1])
 #     else:
-#         p1_wins.append(p1_wins[-1])        
+#         p1_wins.append(p1_wins[-1])
 #         p2_wins.append(p2_wins[-1])
 
 # for i in xrange(1,200001):
