@@ -15,8 +15,23 @@ def diagonalsNeg (matrix, cols, rows):
 
 NONE = "."
 
+##### PARAMETROS PARA JUGAR:
+# - tamano del tablero
+# - cantidad de iteraciones
+# - q iniciales
+# - rewards
+# - e-greedy: epsilon, learning_rate, discount
+# - softmax: temp inicial, funcion de decaimiento
+
+###### TO DO: 
+###### PROBAR QPLAYER VS QPLAYER
+###### PROBAR CON DISTINTOS Q INICIALES
+######    - RANDOM -> DA MAL
+######    - 0 -> CREO Q EL MEJOR
+
+
 class CuatroEnLinea:
-    def __init__(self, playerX, playerO, cols = 3, rows = 3, requiredToWin = 3):
+    def __init__(self, playerX, playerO, cols = 6, rows = 5, requiredToWin = 3):
         """Create a new game."""
         self.cols = cols
         self.rows = rows
@@ -36,10 +51,14 @@ class CuatroEnLinea:
                 player, char, other_player = self.playerO, 'O', self.playerX
             if player.breed == "human":
                 self.display_board()
-            col = player.move(self.board)
 
+            col = player.move(self.board)
             self.insert(col, char)
 
+            if player.breed == "human":
+                actions = other_player.available_moves(self.board)
+                print "actions:", actions
+                print "qs:", [other_player.getQ(other_player.last_board, a) for a in actions]
             if self.player_wins(char):
                 player.reward(1, self.board)
                 other_player.reward(-1, self.board)
@@ -123,16 +142,17 @@ class RandomPlayer(Player):
         return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    def __init__(self, epsilon=0.2, learning_rate=0.3, discount=0.9):
+    def __init__(self, epsilon=0.1, learning_rate=0.9, discount=0.7, initialQ=0.0):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
         self.epsilon = epsilon # e-greedy chance of random exploration
         self.learning_rate = learning_rate # learning rate
         self.discount = discount # discount factor for future rewards
+        self.initialQ = initialQ
 
     def start_game(self, char, cols, rows):
-        self.last_board = [[NONE] * rows for _ in range(cols)]
+        self.last_board = tuple([tuple([NONE] * rows) for _ in range(cols)])
         self.last_move = None
 
     def move(self, board):
@@ -163,7 +183,7 @@ class QLearningPlayer(Player):
     def getQ(self, state, action):
         # encourage exploration; "optimistic" 1.0 initial values
         if self.q.get((state, action)) is None:
-            self.q[(state, action)] = 1.0
+            self.q[(state, action)] = self.initialQ #1 #random.random()
         return self.q.get((state, action))
 
     def learn(self, state, action, reward, result_state):
@@ -173,29 +193,41 @@ class QLearningPlayer(Player):
 
 def gridSeach(param_grid):
     grid = ParameterGrid(param_grid)
+    print "Total experis:", len(grid)
+    j = 0
+    ans = []
     for params in grid:
-        p1 = QLearningPlayer(params["epsilon"], params["learning_rate"], params["discount"])
+        p1 = QLearningPlayer(params["epsilon"], params["learning_rate"], params["discount"], params["initialQ"])
         p2 = RandomPlayer()
 
+        print j
+        
         p1_wins = 0
-
-        for i in xrange(1,500000):
+        for i in xrange(1,200001):
             t = CuatroEnLinea(p1, p2)
             winner = t.play_game()
             if winner == p1:
                 p1_wins += 1
 
-            if p1_wins / float(i) > 0.7:
-                return params
-    return None
+            if i == 200000 and p1_wins / float(i) > 0.75:
+                ans.append((p1_wins/float(i),params))
+                break
+
+        j += 1
+    ans.sorted()
+    return ans
 
 # [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
 def experis():
-    param_grid = {"epsilon": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+    # param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+    param_grid = {"epsilon": [0.1, 0.2], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0], "initialQ": [0.0]}
+    # param_grid = {"epsilon": [0.1], "learning_rate": [0.1], "discount": [1.0], "initialQ": [0.0]}
+    
     best_params = gridSeach(param_grid)
     if best_params:
         print best_params
-    print "No se encontraron buenos parametros"
+    else:
+        print "No se encontraron buenos parametros"
 
 experis()
 
@@ -205,8 +237,8 @@ experis()
 # p1_wins = [0]
 # p2_wins = [0]
 
-# for i in xrange(0,500000):
-#     t = CuatroEnLinea(p1, p2)
+# for i in xrange(1,200001):
+#     t = CuatroEnLinea(p1, p2) #, cols=6, rows=5, requiredToWin=3)
 #     winner = t.play_game()
 #     if winner == p1:
 #         p1_wins.append(p1_wins[-1]+1)
@@ -218,18 +250,17 @@ experis()
 #         p1_wins.append(p1_wins[-1])        
 #         p2_wins.append(p2_wins[-1])
 
-# for i in xrange(1, 500001):
+# for i in xrange(1,200001):
 #     p1_wins[i] = p1_wins[i]/float(i)
 #     p2_wins[i] = p2_wins[i]/float(i)
 
-# plt.plot(p1_wins)
-# plt.plot(p2_wins)
+# plt.semilogx(p1_wins)
+# plt.semilogx(p2_wins)
 # plt.show()
 
-# p1 = Player()
-# p2.epsilon = 0
-# # p2 = Player()
+# p1.epsilon = 0
+# p2 = Player()
 
-# # while True:
-# #     t = CuatroEnLinea(p1, p2)
-# #     t.play_game()
+# while True:
+#     t = CuatroEnLinea(p1, p2)
+#     t.play_game()
