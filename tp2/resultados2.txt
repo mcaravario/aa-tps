@@ -1,0 +1,13 @@
+[(0.76107, {'discount': 1.0, 'learning_rate': 1.0, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.82761, {'discount': 1.0, 'learning_rate': 0.9, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.827715, {'discount': 1.0, 'learning_rate': 0.8, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.828665, {'discount': 1.0, 'learning_rate': 0.6, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.83392, {'discount': 1.0, 'learning_rate': 0.2, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.84292, {'discount': 1.0, 'learning_rate': 0.4, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.8435, {'discount': 1.0, 'learning_rate': 0.1, 'initialQ': 0.0, 'epsilon': 0.2}),
+ (0.86402, {'discount': 1.0, 'learning_rate': 0.2, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.87235, {'discount': 1.0, 'learning_rate': 0.1, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.878485, {'discount': 1.0, 'learning_rate': 0.6, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.883435, {'discount': 1.0, 'learning_rate': 0.8, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.885315, {'discount': 1.0, 'learning_rate': 0.9, 'initialQ': 0.0, 'epsilon': 0.1}),
+ (0.891155, {'discount': 1.0, 'learning_rate': 0.4, 'initialQ': 0.0, 'epsilon': 0.1})]
