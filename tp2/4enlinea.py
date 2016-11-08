@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import random
+import numpy as np
 from itertools import groupby, chain
 import matplotlib.pyplot as plt
 from sklearn.grid_search import ParameterGrid
@@ -143,7 +144,7 @@ class RandomPlayer(Player):
         return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    def __init__(self, epsilon=0.1, learning_rate=0.9, discount=0.9, initialQ=0.0):
+    def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t)):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
@@ -151,28 +152,42 @@ class QLearningPlayer(Player):
         self.learning_rate = learning_rate # learning rate
         self.discount = discount # discount factor for future rewards
         self.initialQ = initialQ
+        self.softmax = softmax
+        self.tau = tau
+        self.iterations = 0.0
+        self.f_decaimiento = f
 
     def start_game(self, char, cols, rows):
         self.last_board = tuple([tuple([NONE] * rows) for _ in range(cols)])
         self.last_move = None
+        self.iterations += 1.0
 
     def move(self, board):
         self.last_board = tuple([tuple(col) for col in board])
         actions = self.available_moves(board)
-
-        if random.random() < self.epsilon: # explore!
-            self.last_move = random.choice(actions)
-            return self.last_move
-
         qs = [self.getQ(self.last_board, a) for a in actions]
-        maxQ = max(qs)
 
-        if qs.count(maxQ) > 1:
-            # more than 1 best option; choose among them randomly
-            best_options = [i for i in range(len(actions)) if qs[i] == maxQ]
-            i = random.choice(best_options)
+        if (self.softmax):
+            #### SOFTMAX
+            s = sum([np.exp(q/self.tau) for q in qs])
+            probs = [np.exp(q/self.tau)/s for q in qs]
+            i = np.random.choice(len(qs), p=probs)
+
+            ### Actualizar tau
+            self.tau = self.f_decaimiento(self.tau, self.iterations)
         else:
-            i = qs.index(maxQ)
+            ##### EPSILON GREEEDY
+            if random.random() < self.epsilon: # explore!
+                self.last_move = random.choice(actions)
+                return self.last_move
+
+            maxQ = max(qs)
+            if qs.count(maxQ) > 1:
+                # more than 1 best option; choose among them randomly
+                best_options = [i for i in range(len(actions)) if qs[i] == maxQ]
+                i = random.choice(best_options)
+            else:
+                i = qs.index(maxQ)
 
         self.last_move = actions[i]
         return actions[i]
@@ -201,7 +216,7 @@ def gridSeach(param_grid):
         p1 = QLearningPlayer(params["epsilon"], params["learning_rate"], params["discount"], params["initialQ"])
         p2 = RandomPlayer()
 
-        print j
+        print "{0}\r".format(j),
 
         p1_wins = 0
         for i in xrange(1,200001):
@@ -215,6 +230,7 @@ def gridSeach(param_grid):
                 break
 
         j += 1
+    print
     ans.sort()
     return ans
 
@@ -230,38 +246,42 @@ def experis():
     else:
         print "No se encontraron buenos parametros"
 
-experis()
+# experis()
 
-# p1 = QLearningPlayer()
-# p2 = RandomPlayer()
+p1 = QLearningPlayer()
+p2 = RandomPlayer()
 
-# p1_wins = [0]
-# p2_wins = [0]
+p1_wins = [0]
+p2_wins = [0]
 
-# for i in xrange(1,200001):
-#     t = CuatroEnLinea(p1, p2) #, cols=6, rows=5, requiredToWin=3)
-#     winner = t.play_game()
-#     if winner == p1:
-#         p1_wins.append(p1_wins[-1]+1)
-#         p2_wins.append(p2_wins[-1])
-#     elif winner == p2:
-#         p2_wins.append(p2_wins[-1]+1)
-#         p1_wins.append(p1_wins[-1])
-#     else:
-#         p1_wins.append(p1_wins[-1])
-#         p2_wins.append(p2_wins[-1])
+it = 200000
+print "Total it:", it
+for i in xrange(1,it):
+    t = CuatroEnLinea(p1, p2) #, cols=6, rows=5, requiredToWin=3)
+    winner = t.play_game()
+    if winner == p1:
+        p1_wins.append(p1_wins[-1]+1)
+        p2_wins.append(p2_wins[-1])
+    elif winner == p2:
+        p2_wins.append(p2_wins[-1]+1)
+        p1_wins.append(p1_wins[-1])
+    else:
+        p1_wins.append(p1_wins[-1])
+        p2_wins.append(p2_wins[-1])
+    if i%5000 == 0:
+        print '\r{0}'.format(i),
 
-# for i in xrange(1,200001):
-#     p1_wins[i] = p1_wins[i]/float(i)
-#     p2_wins[i] = p2_wins[i]/float(i)
+for i in xrange(1,it):
+    p1_wins[i] = p1_wins[i]/float(i)
+    p2_wins[i] = p2_wins[i]/float(i)
 
-# plt.semilogx(p1_wins)
-# plt.semilogx(p2_wins)
-# plt.show()
+plt.semilogx(p1_wins)
+plt.semilogx(p2_wins)
+plt.show()
 
-# p1.epsilon = 0
-# p2 = Player()
+p1.epsilon = 0
+p2 = Player()
 
-# while True:
-#     t = CuatroEnLinea(p1, p2)
-#     t.play_game()
+while True:
+    t = CuatroEnLinea(p1, p2)
+    t.play_game()
