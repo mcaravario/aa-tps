@@ -167,7 +167,7 @@
   \setcounter{page}{1}
 }
 
-% ----- \maketitletxt correspondiente a la versión v0.2.1 (texto v0.2 + fecha ) ---------
+% ----- \maketitletxt correspondiente a la versiï¿½n v0.2.1 (texto v0.2 + fecha ) ---------
 
 \def\maketitletxt{%
     \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
@@ -216,7 +216,7 @@
     \vspace*{\stretch{4}}
     \newpage\aftermaketitle}
 
-% ----- \maketitlegraf correspondiente a la versión v0.3 (gráfica) -------------
+% ----- \maketitlegraf correspondiente a la versiï¿½n v0.3 (grï¿½fica) -------------
 
 \def\maketitlegraf{%
     \ifsetuperror\errmessage{Faltan datos de la caratula! Ingresar 'h' para mas informacion.}\fi
@@ -308,3 +308,7 @@
 \ExecuteOptions{sinEntregas}%
 %
 \ProcessOptions\relax
+
+%Comandos para el todo
+\newcommand{\TODO}{\vbox{\LARGE\color{red}{ToDo;}}}
+\newcommand\todo[1]{\textcolor{red}{\large ToDo: #1}}

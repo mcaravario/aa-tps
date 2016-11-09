@@ -1,1 +1,41 @@
 \section{Experimentos y Resultados}
+Para la experimentación realizada en este trabajo decidimos comenzar implementando la estrategia \textbf{Grid search},
+la cual nos permitio encontrar la mejor configuracion de hiperparametros entre un subconjunto creado por nosotros. Estos
+hiperparametros son: \textit{learning rate} y \textit{discount} para el algoritmo de \textbf{QLearning}, y el epsilon para
+la politica de control \textbf{$\epsilon-greedy$}. La busqueda fue realizada entre los siguientes valores de cada uno:
+
+\begin{itemize}
+  \item  \textbf{$\epsilon$} = 0.1, 0,2
+  \item \textbf{learning\_rate} = 0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0
+  \item \textbf{discount} = 0.5, 0.6, 0.7, 0.8, 0.9
+\end{itemize}
+
+
+Obteniendo como mejor resultado la siguiente configuracion:
+
+\begin{itemize}
+  \item  \textbf{$\epsilon$} = 0.1
+  \item \textbf{learning\_rate} = 0.4
+  \item \textbf{discount} = 0.9
+\end{itemize}
+
+
+\subsection{Experimento 4 en linea en tablero de $7\times6$}
+En el siguiente experimento decidimos entrenar con el juego completo de 4 en linea, en su formato original de un tablero
+de $7\times6$. Para este caso decidimos experimentar con dos politicas de control: \textit{$\epsilon-greedy$} y
+\textit{softmax}. En ambos casos realizamos 500000 iteraciones de juego, y para cada caso entrenamos a nuestro agente
+contra un jugador random y contra otro agente de Qlearning. \\
+Los parametros utilizados tanto para \textit{$\epsilon-greedy$}, como para \textit{softmax} fueron los obtenidos por la
+estrategia de Grid search previamente explicada.
+
+Los resultados obtenidos en cada caso fueron:
+
+\todo{Poner resultados Qlearn vs Qlearn(epsilon greedy)}
+
+\todo{Poner resultados Qlearn vs Qlearn(softmax)}
+
+\todo{Poner resultados Qlearn vs random(epsilon greedy)}
+
+\todo{Poner resultados Qlearn vs random(softmax)}
+
+\subsection{Experimento 3 en linea en tablero de $6\times5$}
