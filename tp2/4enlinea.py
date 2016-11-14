@@ -4,6 +4,7 @@ import numpy as np
 from itertools import groupby, chain
 import matplotlib.pyplot as plt
 from sklearn.grid_search import ParameterGrid
+from decimal import *
 
 def diagonalsPos (matrix, cols, rows):
     """Get positive diagonals, going from bottom-left to top-right."""
@@ -33,7 +34,7 @@ NONE = "."
 
 
 class CuatroEnLinea:
-    def __init__(self, playerX, playerO, cols = 6, rows = 5, requiredToWin = 3):
+    def __init__(self, playerX, playerO, cols = 7, rows = 6, requiredToWin = 4):
         """Create a new game."""
         self.cols = cols
         self.rows = rows
@@ -144,7 +145,9 @@ class RandomPlayer(Player):
         return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t)):
+    
+    #def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t*0.95)):
+    def __init__(self, epsilon=0.0, learning_rate=0.9, discount=0.5, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t)):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
@@ -169,6 +172,7 @@ class QLearningPlayer(Player):
 
         if (self.softmax):
             #### SOFTMAX
+
             s = sum([np.exp(q/self.tau) for q in qs])
             probs = [np.exp(q/self.tau)/s for q in qs]
             i = np.random.choice(len(qs), p=probs)
@@ -200,6 +204,7 @@ class QLearningPlayer(Player):
         # encourage exploration; "optimistic" 1.0 initial values
         if self.q.get((state, action)) is None:
             self.q[(state, action)] = self.initialQ #1 #random.random()
+            #self.q[(state, action)] = random.random()
         return self.q.get((state, action))
 
     def learn(self, state, action, reward, result_state):
@@ -217,6 +222,7 @@ def gridSeach(param_grid):
         p2 = RandomPlayer()
 
         print "{0}\r".format(j),
+        print j 
 
         p1_wins = 0
         for i in xrange(1,200001):
@@ -237,7 +243,8 @@ def gridSeach(param_grid):
 # [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "learning_rate": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], "discount": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
 def experis():
     # param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-    param_grid = {"epsilon": [0.1, 0.2], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [0.9], "initialQ": [0.0]}
+    param_grid = {"epsilon": [0.0, 0.1], "learning_rate": [0.8, 0.9, 1.0], "discount": [0.4, 0.5, 0.6], "initialQ": [0.0]}
+    
     # param_grid = {"epsilon": [0.1], "learning_rate": [0.1], "discount": [1.0], "initialQ": [0.0]}
 
     best_params = gridSeach(param_grid)
@@ -246,13 +253,15 @@ def experis():
     else:
         print "No se encontraron buenos parametros"
 
-# experis()
+#experis()
 
 p1 = QLearningPlayer()
+#p2 = QLearningPlayer()
 p2 = RandomPlayer()
 
 p1_wins = [0]
 p2_wins = [0]
+
 
 it = 200000
 print "Total it:", it
@@ -271,9 +280,12 @@ for i in xrange(1,it):
     if i%5000 == 0:
         print '\r{0}'.format(i),
 
+
 for i in xrange(1,it):
     p1_wins[i] = p1_wins[i]/float(i)
     p2_wins[i] = p2_wins[i]/float(i)
+
+
 
 plt.semilogx(p1_wins)
 plt.semilogx(p2_wins)
