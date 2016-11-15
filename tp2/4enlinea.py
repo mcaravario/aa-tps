@@ -256,14 +256,16 @@ def experis():
 #experis()
 
 p1 = QLearningPlayer()
-#p2 = QLearningPlayer()
-p2 = RandomPlayer()
+p2 = QLearningPlayer()
+#p2 = RandomPlayer()
 
 p1_wins = [0]
 p2_wins = [0]
 
 
-it = 200000
+#it = 200000
+it = 1000000
+#it = 9000000
 print "Total it:", it
 for i in xrange(1,it):
     t = CuatroEnLinea(p1, p2) #, cols=6, rows=5, requiredToWin=3)

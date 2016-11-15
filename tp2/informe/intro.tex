@@ -72,7 +72,7 @@ Lo que podemos observar es que:
  \centering
   \begin{minipage}[c]{1\textwidth}
 	\centering	
-	\includegraphics[scale=0.5]{QlearningRandomEgreedy200000.png}
+	\includegraphics[scale=0.5]{img/QlearningRandomEgreedy200000.png}
         \caption{Qlearning vs Random 200000 juegos}
   \end{minipage}
 \end{figure}
@@ -87,12 +87,12 @@ Que pasa si jugabamos contra otro jugador Q-learning, bajo la combinación de pa
  \begin{minipage}{.45\textwidth}	  
   %\begin{minipage}[c]{1\textwidth}
 	\centering	
-	\includegraphics[scale=0.35]{QlearningQlearningEgreedy200000.png}
+	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy200000.png}
         \caption{Qlearning vs Qlearning 200000 juegos}
   \end{minipage}
  \begin{minipage}{.5\textwidth} 
 	\centering	
-	\includegraphics[scale=0.35]{QlearningQlearningEgreedy1000000.png}
+	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy1000000.png}
         \caption{Qlearning vs Qlearning 1000000 juegos}
   \end{minipage}
 \end{figure}
@@ -103,7 +103,7 @@ Que pasa si jugabamos contra otro jugador Q-learning, bajo la combinación de pa
  \begin{minipage}{.45\textwidth}	  
   %\begin{minipage}[c]{1\textwidth}
 	\centering	
-	\includegraphics[scale=0.35]{QlearningQlearningEgreedy9000000.png}
+	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy9000000.png}
         \caption{Qlearning vs Qlearning 9000000 juegos}
   \end{minipage}
 \end{figure}
@@ -119,14 +119,14 @@ Y esto explicaría porque no empatan. Como el jugador que comienza tiene una est
 
 Sin embargo estamos jugando un juego con un tablero de dimension menor, asi que queremos ver que pasa si entrenamos con los mismos parametros y las caracteriticas del juego original.
 
-%\begin{figure}[h]
-% \centering
-%  \begin{minipage}[c]{1\textwidth}
-%	\centering	
-%	\includegraphics[scale=0.5]{QlearningRandomEgreedy2000007x6(4).png}
-%        \caption{Qlearning vs Random 200000 juegos}
-%  \end{minipage}
-%\end{figure}
+\begin{figure}[h]
+ \centering
+  \begin{minipage}[c]{1\textwidth}
+	\centering	
+	\includegraphics[scale=0.5]{img/QlearningRandomEgreedy2000007x6(4).png}
+        \caption{Qlearning vs Random 200000 juegos}
+  \end{minipage}
+\end{figure}
 
 Lo que podemos observar es bastante razonable, como agrandamos el tablero tenemos muchas mas combinaciones, motivo por el cual, tarda mas tiempo en aprender como ganar. 
 
@@ -134,30 +134,21 @@ En este caso ya no encontramos estrategia ganadora para los mismos parametros.
 {\huge EXPLICAR MEJOR ESTO}\\
 
 
-%\begin{figure}[h]
-% \centering
- %\begin{minipage}{.45\textwidth}	  
-%	\centering	
-%	\includegraphics[scale=0.35]{QlearningQlearningEgreedy2000007x6(4).png}
-%        \caption{Qlearning vs Qlearning 200000 juegos}
-%  \end{minipage}
+\begin{figure}[h]
+ \centering
+ \begin{minipage}{.45\textwidth}	  
+	\centering	
+	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy2000007x6(4).png}
+       \caption{Qlearning vs Qlearning 200000 juegos}
+  \end{minipage}
 % \begin{minipage}{.5\textwidth} 
 %	\centering	
-%	\includegraphics[scale=0.35]{QlearningQlearningEgreedy1000000.png}
+%	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy1000000.png}
 %        \caption{Qlearning vs Qlearning 1000000 juegos}
 %  \end{minipage}
-%\end{figure}
+\end{figure}
 
-
-%\begin{figure}[h]
-% \centering
-% \begin{minipage}{.45\textwidth}	  
-%	\centering	
-%	\includegraphics[scale=0.35]{QlearningQlearningEgreedy9000000.png}
-%        \caption{Qlearning vs Qlearning 9000000 juegos}
-%  \end{minipage}
-%\end{figure}
-
+No pudimos probar Qlearning Vs Qlearning con 9000000 juegos debido al tiempo de computo. 
 
 
 Asi que pensamos en probar otra politica de control softmax. 
