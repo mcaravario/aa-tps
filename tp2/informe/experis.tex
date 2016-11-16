@@ -68,14 +68,14 @@ siguientes parametros junto con las decisiones tomadas y mencionadas previamente
 
 En la siguiente prueba fijamos el valor de \epsilon al mejor resultado 0 y  variamos el learning\_rate del mismo modo.
 Obteniendo que con 0.9 ganaba el 95\% de las veces. Luego fijamos learning\_rate a 0.9 e hicimos lo mismo con discount y
-gano el 93\% de las veces con 0.1. Es decir que fuimos probando las mejores configuracioes de parametros de forma greedy \\
+gano el 93\% de las veces con 0.1. Es decir que fuimos probando las mejores configuraciones de parametros de forma greedy \\
 
 Solo nos restaba variar los valores de inicializacion de matriz Q. Para esto decidimos tomar los mejores resultados del paso
  anterior e inicializarla con valores entre 0 y 1, aumentado en cada paso en 0.1, y tambien probamos que pasaba si
  inicializabamos la matriz con todos los valores random. \\
 
-El mejor valor obtenido para la inicializacion fue el 0, con el cual nuestro agente gano en el 93\% de las veces.
-Por lo tanto, podemos concluir que La mejor combinación que obtuvimos fué:
+El mejor valor obtenido para la inicializacion de Q fue el 0, con el cual nuestro agente gano en el 93\% de las veces.
+Por lo tanto, podemos concluir que la mejor combinación que obtuvimos fué:
 
 \begin{itemize}
   \item  \textbf{$\epsilon$} = 0.0
@@ -84,17 +84,8 @@ Por lo tanto, podemos concluir que La mejor combinación que obtuvimos fué:
   \item \textbf{initialQ} = 0.0
 \end{itemize}
 
+Obteniendo los siguientes resultados:
 
-Finalmente, podemos concluir que:
-\begin{itemize}
-  \item  Darle mucho peso a la información reciente da buenos resultados.
-  \item  Es tan importante tomar en cuenta las recompesas actuales como las futuras.
-  \item  Siempre explotar la informacion que ya conocemos, nunca explorar.
-  \item  Es mejor no asignarle ningun valor arbitrario a la matriz de Q. Mejor ir aprendiendo los valores en funcion de
-   los juegos.
-
-\end{itemize}
-%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 \begin{figure}[h]
  \centering
@@ -111,6 +102,20 @@ Lo que podemos observar es que efectivamente el jugador QLearning aprende, pues 
 
 Que pasa si jugabamos contra otro jugador Q-learning, bajo la combinación de paramtros obtenida en el paso anterior?.
  Suponemos que en algún momento empezarán a empatar porque ambos aprendieron a jugar.\\
+
+Finalmente, sobre estos parametros podemos concluir que:
+\begin{itemize}
+  \item  Darle mucho peso a la información reciente da buenos resultados.
+  \item  Es tan importante tomar en cuenta las recompesas actuales como las futuras.
+  \item  Siempre explotar la informacion que ya conocemos, nunca explorar.
+  \item  Es mejor no asignarle ningun valor arbitrario a la matriz de Q. Mejor ir aprendiendo los valores en funcion de
+   los juegos.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+Luego de realizados estos experimentos, decidimos variar la cantidad de epocas para el caso donde juegan dos Qlearners,
+obteniendo los siguientes resultados:
 
 \begin{figure}[h]
  \centering
@@ -146,11 +151,14 @@ Asi que decidimos jugar contra el jugador Q-learning entrenado para ver como est
  a jugar, siempre tiene una estrategia ganadora.\\
 {\huge EXPLICAR BIEN LA ESTRATEGIA GANADORA}\\
 
-Y esto explicaría porque no empatan. Como el jugador que comienza tiene una estrategia ganadora siempre va a ganar.\\
+Y esto explicaría por que no empatan. Como el jugador que comienza tiene una estrategia ganadora siempre va a ganar.\\
 
+Sin embargo estamos jugando un juego con un tablero de dimension menor, asi que queremos ver que pasa si entrenamos
+ con los mismos parametros y las caracteristicas del juego original.
 
-Sin embargo estamos jugando un juego con un tablero de dimension menor, asi que queremos ver que pasa si entrenamos con los mismos
- parametros y las caracteriticas del juego original.
+\subsection{Experimento 4 en linea en tablero de $7\times6$}
+En esta seccion experimentamos con el tablero original de $7\times6$, y las reglas originales del 4 en linea, obteniendo
+los siguientes resultados:
 
 \begin{figure}[h]
  \centering
@@ -196,23 +204,23 @@ Empezamos con el tabler de 6x5 y 3 fichas y una vez encontrado los parametros pa
 
 
 
-
-\subsection{Experimento 4 en linea en tablero de $7\times6$}
-En el siguiente experimento decidimos entrenar con el juego completo de 4 en linea, en su formato original de un tablero
-de $7\times6$. Para este caso decidimos experimentar con dos politicas de control: \textit{$\epsilon-greedy$} y
-\textit{softmax}. En ambos casos realizamos 500000 iteraciones de juego, y para cada caso entrenamos a nuestro agente
-contra un jugador random y contra otro agente de Qlearning. \\
-Los parametros utilizados tanto para \textit{$\epsilon-greedy$}, como para \textit{softmax} fueron los obtenidos por la
-estrategia de Grid search previamente explicada.
-
-Los resultados obtenidos en cada caso fueron:
-
-\todo{Poner resultados Qlearn vs Qlearn(epsilon greedy)}
-
-\todo{Poner resultados Qlearn vs Qlearn(softmax)}
-
-\todo{Poner resultados Qlearn vs random(epsilon greedy)}
-
-\todo{Poner resultados Qlearn vs random(softmax)}
-
-\subsection{Experimento 3 en linea en tablero de $6\times5$}
+%
+% \subsection{Experimento 4 en linea en tablero de $7\times6$}
+% En el siguiente experimento decidimos entrenar con el juego completo de 4 en linea, en su formato original de un tablero
+% de $7\times6$. Para este caso decidimos experimentar con dos politicas de control: \textit{$\epsilon-greedy$} y
+% \textit{softmax}. En ambos casos realizamos 500000 iteraciones de juego, y para cada caso entrenamos a nuestro agente
+% contra un jugador random y contra otro agente de Qlearning. \\
+% Los parametros utilizados tanto para \textit{$\epsilon-greedy$}, como para \textit{softmax} fueron los obtenidos por la
+% estrategia de Grid search previamente explicada.
+%
+% Los resultados obtenidos en cada caso fueron:
+%
+% \todo{Poner resultados Qlearn vs Qlearn(epsilon greedy)}
+%
+% \todo{Poner resultados Qlearn vs Qlearn(softmax)}
+%
+% \todo{Poner resultados Qlearn vs random(epsilon greedy)}
+%
+% \todo{Poner resultados Qlearn vs random(softmax)}
+%
+% \subsection{Experimento 3 en linea en tablero de $6\times5$}
