@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from sklearn.grid_search import ParameterGrid
 from decimal import *
 
+count = 0
+
 def diagonalsPos (matrix, cols, rows):
     """Get positive diagonals, going from bottom-left to top-right."""
     for di in ([(j, i - j) for j in range(cols)] for i in range(cols + rows -1)):
@@ -88,7 +90,7 @@ class CuatroEnLinea:
         while c[i] != NONE:
             i -= 1
         c[i] = char
-    
+
     def player_wins(self, player_char):
         """Get the winner on the current board."""
         lines = (
@@ -102,7 +104,7 @@ class CuatroEnLinea:
             for char, group in groupby(line):
                 if char == player_char and len(list(group)) >= self.win:
                     return True
-        return False        
+        return False
 
     def board_full(self):
         return not any([space == NONE for cols in self.board for space in cols])
@@ -145,9 +147,9 @@ class RandomPlayer(Player):
         return random.choice(self.available_moves(board))
 
 class QLearningPlayer(Player):
-    
-    #def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t*0.95)):
-    def __init__(self, epsilon=0.0, learning_rate=0.9, discount=0.5, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t)):
+
+    def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t*0.95)):
+    #def __init__(self, epsilon=0.0, learning_rate=0.9, discount=0.5, initialQ=0.0, softmax=True, tau=0.9, f=(lambda t, it: (t*0.999999))):
         self.breed = "Qlearner"
         self.harm_humans = False
         self.q = {} # (state, action) keys: Q values
@@ -175,10 +177,22 @@ class QLearningPlayer(Player):
 
             s = sum([np.exp(q/self.tau) for q in qs])
             probs = [np.exp(q/self.tau)/s for q in qs]
-            i = np.random.choice(len(qs), p=probs)
-
+            maximos = []
             ### Actualizar tau
-            self.tau = self.f_decaimiento(self.tau, self.iterations)
+            if(self.f_decaimiento(self.tau, self.iterations) < 0.1):
+                m = np.max(probs)
+                for i in range(0,len(probs)-1):
+                    if(probs[i] == m):
+                        maximos.append(i)
+                i = random.choice(maximos)
+                global count
+                print count
+            else:
+                self.tau = self.f_decaimiento(self.tau, self.iterations)
+                i = np.random.choice(len(qs), p=probs)
+                global count
+                count += 1
+
         else:
             ##### EPSILON GREEEDY
             if random.random() < self.epsilon: # explore!
@@ -222,7 +236,7 @@ def gridSeach(param_grid):
         p2 = RandomPlayer()
 
         print "{0}\r".format(j),
-        print j 
+        print j
 
         p1_wins = 0
         for i in xrange(1,200001):
@@ -244,7 +258,7 @@ def gridSeach(param_grid):
 def experis():
     # param_grid = {"epsilon": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9], "learning_rate": [0.1, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0], "discount": [1.0, 0.9, 0.7, 0.5, 0.3, 0.0], "initialQ": [0.0]}#, 0.1, 0.5, 1.0]} #, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
     param_grid = {"epsilon": [0.0, 0.1], "learning_rate": [0.8, 0.9, 1.0], "discount": [0.4, 0.5, 0.6], "initialQ": [0.0]}
-    
+
     # param_grid = {"epsilon": [0.1], "learning_rate": [0.1], "discount": [1.0], "initialQ": [0.0]}
 
     best_params = gridSeach(param_grid)
@@ -256,15 +270,15 @@ def experis():
 #experis()
 
 p1 = QLearningPlayer()
-p2 = QLearningPlayer()
-#p2 = RandomPlayer()
+#p2 = QLearningPlayer()
+p2 = RandomPlayer()
 
 p1_wins = [0]
 p2_wins = [0]
 
 
-#it = 200000
-it = 1000000
+it = 200000
+#it = 1000000
 #it = 9000000
 print "Total it:", it
 for i in xrange(1,it):
