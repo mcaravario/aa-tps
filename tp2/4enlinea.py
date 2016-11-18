@@ -303,8 +303,12 @@ for i in xrange(1,it):
 
 
 
-plt.semilogx(p1_wins)
-plt.semilogx(p2_wins)
+plt.semilogx(p1_wins, label="Qlearning Player 1")
+plt.semilogx(p2_wins, label="Qlearning Player 1")
+plt.title('QLearning vs Qlearning - 1000000')
+plt.xlabel('Iteraciones')
+plt.ylabel('Porcentaje Victorias')
+plt.legend(loc='upper left')
 plt.show()
 
 p1.epsilon = 0
