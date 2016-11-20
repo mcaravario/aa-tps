@@ -132,19 +132,12 @@ A continuación podemos ver para los diferentes sets los porcetajes de victorias
 
 Lo que podemos observar es que efectivamente el jugador QLearning aprende, pues a medida que aumenta la cantidad de juegos gana mayor cantidad de partidas. Contrariamente al jugador random.  \\
 
-En los tres casos alrededor del orden de $10^{3}$ empieza a ganar el jugador entrenado. Pero considerando que el oponente es random decidimos jugar nosotros para ver cuan bueno era. Lo que notamos luego de varias partidas es que lo que había aprendido era una estrategia ganadora cuando el que ponía la primer ficha era él. Tambi\'en se defend\'ia bien cuando era su turno, es decir, no aprendi\'o algo en detrimento de lo otro.\\
-
-=======
+En los tres casos alrededor del orden de $10^{3}$ empieza a ganar el jugador entrenado. 
 Asi que decidimos jugar contra el jugador Q-learning entrenado para ver c\'omo estaba jugando. Y notamos dos comportamientos interesantes para contar.
 
 El primer escenario suced\'ia cuando estaba por perder. El turno es el del QLearner, y el otro jugador tiene dos posibles l\'ineas de tres para completar y ganar. Es decir, sin importar si el QLearner bloqueara alguna de las l\'ineas, el otro jugador ganar\'ia en el siguiente turno. La acci\'on que tomaba el QLearner era ignorar los dos bloques y formar una l\'inea de 2 con el objetivo que, suponemos, si el otro jugador se confunde, en el siguiente paso el QLeaerner pueda ganar.  
 
 El segundo escenario sucede siempre que el QLearner comience primero a jugar. El Qlearner aprendi\'o una estrategia ganadora. Esta es muy parecida a la de que se utiliza en el juego de ta-te-ti de formar una L, hace una serie de movimientos que lleva a que el contrincante sin importar donde ponga la pr\'oxima ficha, el Qlearner tiene otras dos posibilidades para ganar. Para que el lector pueda probar esto y jugar, el c\'odigo por default carga este jugador.
-
->>>>>>> Stashed changes
-
-
-La estregia es muy parecida a la de que se utiliza en el juego de ta-te-ti de formar una L, hace una serie de movimientos que lleva a que el contrincante sin importar donde ponga la pr\'oxima ficha, el Qlearner tiene otras dos posibilidades para ganar. Para que el lector pueda probar esto y jugar, se puede cargar el modelo desde la l\'inea de comando.
 
 Nos pareci\'o muy llamativa este comportamiento que logr\'o el Qlearner, y lo tomamos como una prueba fehaciente que el modelo realmente est\'a aprendiendo la naturaleza detr\'as del juego. Mientras que una persona tardar\'ia bastante tiempo en encontrar la estrategia ganadora, el algoritmo lo encontr\'o simplemente al jugar repetidas veces contra un jugador que tira acciones random.
 
