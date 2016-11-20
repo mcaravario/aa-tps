@@ -25,8 +25,9 @@
 
 Para la experimentación realizada decidimos utilizar el algoritmo de \textbf{QLearning} para entrenar al agente que jugara
 al 4 en linea. Este algoritmo utiliza los hiperparametros \textit{learning rate} y \textit{discount} y la inicializacion
- de la matriz de valores de Q. Ademas de estos hiperparametros, tambien necesitamos una politica de control, una cantidad
-  de epocas para entrenar y un oponente contra quien jugar.  \\
+ de la matriz de valores de Q. 
+ Ademas de estos hiperparametros, tambien necesitamos una politica de control, una cantidad
+  de epocas para entrenar y un oponente contra quien jugar. 
 
 Para este punto notamos que teniamos una explosión combinatoria de parametros, razon por la cual tomamos algunas decisiones
 sobre los parametros a utilizar:
@@ -43,7 +44,7 @@ inicializamos la matriz de Q. Estos tres parametros se moverán entre 0 y 1. Aum
 El resultado fue que obtuvimos 14641 combinaciones distintas de parametros lo cual fue inviable de probar por cuestiones
  de tiempo. Por este motivo decidimos fijar la inicializacion de la matriz de Q en 0, el \textit{learning rate} y
   \textit{discount} a 0.5, con el objetivo de tomar por igual las recompensas futuras y las actuales, de igual forma
-   con la información reciente y la pasada. \\
+   con la información reciente y la pasada. 
 
 Al fijar estos parametros nos redujo la cantidad de combinaciones posibles a 11. Sin embargo el tiempo que tardaba en entrenar
  seguia siendo muy alto, motivo por el cual se nos ocurrió que en vez de jugar con un tablero de 7x6 y 4 en linea para ganar,
@@ -68,11 +69,11 @@ siguientes parametros junto con las decisiones tomadas y mencionadas previamente
 
 En la siguiente prueba fijamos el valor de $\epsilon$ al mejor resultado 0 y  variamos el learning\_rate del mismo modo.
 Obteniendo que con 0.9 ganaba el 95\% de las veces. Luego fijamos learning\_rate a 0.9 e hicimos lo mismo con discount y
-gano el 93\% de las veces con 0.1. Es decir que fuimos probando las mejores configuraciones de parametros de forma greedy \\
+gano el 93\% de las veces con 0.1. Es decir que fuimos probando las mejores configuraciones de parametros de forma greedy.
 
 Solo nos restaba variar los valores de inicializacion de matriz Q. Para esto decidimos tomar los mejores resultados del paso
  anterior e inicializarla con valores entre 0 y 1, aumentado en cada paso en 0.1, y tambien probamos que pasaba si
- inicializabamos la matriz con todos los valores random. \\
+ inicializabamos la matriz con todos los valores random.
 
 El mejor valor obtenido para la inicializacion de Q fue el 0, con el cual nuestro agente gano en el 93\% de las veces.
 Por lo tanto, podemos concluir que la mejor combinación que obtuvimos fué:
@@ -97,8 +98,7 @@ Obteniendo los siguientes resultados:
 \end{figure}
 %\end{frame}
 
-Lo que podemos observar es que efectivamente el jugador QLearning aprende, pues a medida que aumenta la cantidad de juegos
- gana mayor cantidad de partidas. Contrariamente al jugador random.  \\
+Lo que podemos observar es que efectivamente el jugador QLearning aprende, pues a medida que aumenta la cantidad de juegos gana mayor cantidad de partidas. Buscamos explicaci\'on y experimentos sobre la aleatoriedad de las victorias en los primeros trials y un por qu\'e gana tanto el jugador Random pero no la encontramos.
 
 Que pasa si jugabamos contra otro jugador Q-learning, bajo la combinación de paramtros obtenida en el paso anterior?.
  Suponemos que en algún momento empezarán a empatar porque ambos aprendieron a jugar.\\
@@ -123,15 +123,14 @@ obteniendo los siguientes resultados:
   %\begin{minipage}[c]{1\textwidth}
 	\centering
 	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy200000.png}
-        \caption{Qlearning vs Qlearning 200000 juegos}
+        \caption{QL vs QL 200000 juegos}
   \end{minipage}
  \begin{minipage}{.5\textwidth}
 	\centering
 	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy1000000.png}
-        \caption{Qlearning vs Qlearning 1000000 juegos}
+        \caption{QL vs QL 1000000 juegos}
   \end{minipage}
 \end{figure}
-
 
 \begin{figure}[h]
  \centering
@@ -139,17 +138,18 @@ obteniendo los siguientes resultados:
   %\begin{minipage}[c]{1\textwidth}
 	\centering
 	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy9000000.png}
-        \caption{Qlearning vs Qlearning 9000000 juegos}
+        \caption{QL vs QL 9000000 juegos}
   \end{minipage}
 \end{figure}
 
-
 Podemos ver como a la hora de enfrentarse contra otro jugador, que tambien aprende, llega un momento donde se estabiliza la
- cantidad de veces que gana cada uno. Esto no se corresponde con la idea que teniamos. \\
+ cantidad de veces que gana cada uno. Esto no se corresponde con la idea que teniamos. 
 
-Asi que decidimos jugar contra el jugador Q-learning entrenado para ver como estaba jugando. Y lo que notamos es que cuando comienza
- a jugar, siempre tiene una estrategia ganadora.\\
-{\huge EXPLICAR BIEN LA ESTRATEGIA GANADORA}\\
+Asi que decidimos jugar contra el jugador Q-learning entrenado para ver c\'omo estaba jugando. Y lo que notamos es que siempre que el primer turno sea de \'el, utilizaba una estrategia ganadora. Tambi\'en se defend\'ia bien cuando era su turno, es decir, no aprendi\'o algo en detrimento de lo otro.
+
+La estregia es muy parecida a la de que se utiliza en el juego de ta-te-ti de formar una L, hace una serie de movimientos que lleva a que el contrincante sin importar donde ponga la pr\'oxima ficha, el Qlearner tiene otras dos posibilidades para ganar. Para que el lector pueda probar esto y jugar, se puede cargar el modelo desde la l\'inea de comando.
+
+Nos pareci\'o muy llamativa este comportamiento que logr\'o el Qlearner, y lo tomamos como una prueba fehaciente que el modelo realmente est\'a aprendiendo la naturaleza detr\'as del juego. Mientras que una persona tardar\'ia bastante tiempo en encontrar la estrategia ganadora, el algoritmo lo encontr\'o simplemente al jugar repetidas veces contra un jugador que tira acciones random.
 
 Y esto explicaría por que no empatan. Como el jugador que comienza tiene una estrategia ganadora siempre va a ganar.\\
 
@@ -165,7 +165,7 @@ los siguientes resultados:
   \begin{minipage}[c]{1\textwidth}
 	\centering
 	\includegraphics[scale=0.5]{img/QlearningRandomEgreedy2000007x6(4).png}
-        \caption{Qlearning vs Random 200000 juegos}
+        \caption{QL vs Random 200000 juegos}
   \end{minipage}
 \end{figure}
 
@@ -181,7 +181,7 @@ En este caso ya no encontramos estrategia ganadora para los mismos parametros.
  \begin{minipage}{.45\textwidth}
 	\centering
 	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy2000007x6(4).png}
-       \caption{Qlearning vs Qlearning 200000 juegos}
+       \caption{QL vs QL 200000 juegos}
   \end{minipage}
 % \begin{minipage}{.5\textwidth}
 %	\centering
