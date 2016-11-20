@@ -3,8 +3,10 @@ import random
 import numpy as np
 from itertools import groupby, chain
 import matplotlib.pyplot as plt
-from sklearn.grid_search import ParameterGrid
+from sklearn.model_selection import ParameterGrid
 from decimal import *
+import cPickle
+import sys
 
 count = 0
 
@@ -20,7 +22,7 @@ def diagonalsNeg (matrix, cols, rows):
 
 NONE = "."
 
-##### PARAMETROS PARA JUGAR:
+##### PARAMETROS PARA EXPERIMENTAR:
 # - tamano del tablero
 # - cantidad de iteraciones
 # - q iniciales
@@ -146,9 +148,13 @@ class RandomPlayer(Player):
     def move(self, board):
         return random.choice(self.available_moves(board))
 
+def f(t, it):
+    return t*0.95
+
+
 class QLearningPlayer(Player):
 
-    def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5, f=(lambda t, it: t*0.95)):
+    def __init__(self, epsilon=0.1, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5):
     #def __init__(self, epsilon=0.0, learning_rate=0.9, discount=0.5, initialQ=0.0, softmax=True, tau=0.9, f=(lambda t, it: (t*0.999999))):
         self.breed = "Qlearner"
         self.harm_humans = False
@@ -236,7 +242,7 @@ def gridSeach(param_grid):
         p2 = RandomPlayer()
 
         print "{0}\r".format(j),
-        print j
+        sys.stdout.flush() 
 
         p1_wins = 0
         for i in xrange(1,200001):
@@ -250,7 +256,7 @@ def gridSeach(param_grid):
                 break
 
         j += 1
-    print
+    print ""
     ans.sort()
     return ans
 
@@ -267,7 +273,61 @@ def experis():
     else:
         print "No se encontraron buenos parametros"
 
+def load(load_file="qlearner.pickle"):
+    print "Cargando Jugador"
+    with open(load_file, "rb") as input:
+        qlearner = cPickle.load(input)
+    return qlearner
+
+
+def save(save_file="qlearner.pickle", epsilon=0.0001, learning_rate=0.4, discount=1.0, initialQ=0.0, softmax=False, tau=0.5):
+    cols = 6
+    rows = 5
+    requiredToWin = 3
+    it = 200000
+
+    player0 = QLearningPlayer(epsilon=epsilon, learning_rate=learning_rate, discount=discount, initialQ=initialQ, softmax=softmax, tau=tau)
+    player1 = RandomPlayer()
+
+    print "Entrenando", str(it), "iteraciones"
+    for i in xrange(it):
+        t = CuatroEnLinea(player0, player1, cols=cols, rows=rows, requiredToWin=requiredToWin)
+        t.play_game()
+        if i%5000 == 0:
+            print '\r{0}'.format(i),
+            sys.stdout.flush()
+    print ""
+    print "Guardando QLearner en ", save_file
+    with open(save_file, "wb") as output:
+        cPickle.dump(player0, output, cPickle.HIGHEST_PROTOCOL)
+
+def jugar_vs_qlearner():
+    p0 = load("qlearner.pickle")
+    p0.epsilon = 0
+    p1 = Player()
+    cols = 6
+    rows = 5
+    requiredToWin = 3
+    print "Tablero 6x5, se gana con 3-en-linea"
+    print ""
+    while True:
+        t = CuatroEnLinea(p0, p1, rows=rows, cols=cols, requiredToWin=requiredToWin)
+        t.play_game()
+
+
 #experis()
+
+if len(sys.argv) == 1:
+    print "Ahora jugara con el mejor QLeaner obtenido, Suerte!"
+    jugar_vs_qlearner()
+elif sys.argv[1] == "-save":
+    print "Generando jugador"
+    save("qlearner.pickle")
+    sys.exit()
+elif sys.argv[1] == "-experis":
+    print "Comenzando experis"
+    experis()
+    sys.exit()
 
 p1 = QLearningPlayer()
 #p2 = QLearningPlayer()
@@ -277,6 +337,7 @@ p1_wins = [0]
 p2_wins = [0]
 
 
+# Entrenar y guardar victorias
 it = 200000
 #it = 1000000
 #it = 9000000
@@ -296,13 +357,13 @@ for i in xrange(1,it):
     if i%5000 == 0:
         print '\r{0}'.format(i),
 
-
+# Normalizar victorias
 for i in xrange(1,it):
     p1_wins[i] = p1_wins[i]/float(i)
     p2_wins[i] = p2_wins[i]/float(i)
 
 
-
+# Graficar
 plt.semilogx(p1_wins, label="Qlearning Player 1")
 plt.semilogx(p2_wins, label="Qlearning Player 1")
 plt.title('QLearning vs Qlearning - 1000000')
@@ -311,6 +372,7 @@ plt.ylabel('Porcentaje Victorias')
 plt.legend(loc='upper left')
 plt.show()
 
+# Jugarle al Qlearner obtenido
 p1.epsilon = 0
 p2 = Player()
 
