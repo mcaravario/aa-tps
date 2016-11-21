@@ -23,10 +23,9 @@
 % entrenar y un oponente contra quien jugar.
 % Así que tomamos algunas decisiones:
 
-Para la experimentación realizada utilizamos el algoritmo de \textbf{QLearning} para entrenar al agente que jugara al 4 en linea. Este algoritmo utiliza los hiperparametros \textit{learning rate} y \textit{discount} y los valores de inicialización
- de la matriz de valores de Q. Ademas de estos hiperparametros, necesitamos una politica de control, una cantidad de epocas para entrenar y un oponente contra quien jugar.  \\
+Para entrenar al agente que jugará al 4 en línea utilizamos el algoritmo \textbf{QLearning}. Este algoritmo utiliza los hiperparametros \textit{learning rate} y \textit{discount} y los valores de inicialización de la matriz de Q. Ademas de estos hiperparametros, necesitamos una politica de control, una cantidad de epocas para entrenar y un oponente contra quien jugar.  \\
 
-Tratar todas las combinaciones posibles de parametros no es posible computacionalmente, por este motivo tomamos algunas decisiones sobre los parametros a utilizar, que se irán modificando en función de lo aprendido en el camino:
+Tratar todas las combinaciones no es posible computacionalmente, por este motivo tomamos algunas decisiones sobre los parametros a utilizar, que se irán modificando en función de lo aprendido en el camino:
 
 \begin{enumerate}
 \item La cantidad de epocas para entrenar serán 200.000
@@ -38,19 +37,19 @@ Tratar todas las combinaciones posibles de parametros no es posible computaciona
 Estas deciones achicaron el espacio de exploración pero aun asi era muy grande. Asi que fijamos dos conjuntos de pruebas distintos. 
 
 \begin{itemize}
-  \item El primer conjunto lo obtuvimos seteando \textbf{$\epsilon$} en 0.1 y 0.2 para tener un poco de exploración, sin que sea excesiva, \textit{learning rate} a 0.4, 0.5 y 0.6 para que aprenda más o menos equlibrado de la experiencia reciente y la pasada y \textit{discount} en 0.8, 0.9 y 1.0 para darle mayor importancia a las recompensas futuras. Por ultimo los valores iniciales de la matriz de Q los seteamos en 0, 1 y valores random. 
+  \item El primer conjunto lo generamos seteando \textbf{$\epsilon$} en 0.1 y 0.2 para tener un poco de exploración, sin que sea excesiva, \textit{learning rate} a 0.4, 0.5 y 0.6 para que aprenda de un modo "equlibrado" de la experiencia reciente y la pasada y \textit{discount} en 0.8, 0.9 y 1.0 para darle mayor importancia a las recompensas futuras. Por último los valores iniciales de la matriz de Q los seteamos en 0, 1 y valores random. 
    
-  \item  El segundo conjunto lo armamos haciendo varias corridas en las que en cada una movimos un unico parametro y dejamos fijo al resto. Cada vez que obtuvimos el mejor paramtro de la iteracion lo fijamos y movimos el siguiente. Cada uno de los paramtros fué movido entre 0 y 1 con pasos de 0.1. La combinación inicial fué la matriz de Q en 0 y en valores random, el \textit{learning rate} y \textit{discount} a 0.5, con el objetivo de tomar por igual las recompensas futuras y las actuales, de igual forma con la información reciente y la pasada. \\
+  \item  El segundo conjunto lo armamos haciendo varias corridas en las que en cada una movimos un único parametro y dejamos fijo al resto. Cada vez que obtuvimos el mejor paramtro de la iteración lo fijamos y movimos el siguiente. Cada uno de los parametros fué movido entre 0 y 1 con pasos de 0.1. La combinación inicial fué la matriz de Q en 0 y en valores random, el \textit{learning rate} y \textit{discount} en 0.5, con el objetivo de tomar por igual las recompensas futuras y las actuales, de igual forma con la información reciente y la pasada. \\
 \end{itemize} 
 
-El armado de estos dos conjuntos de parametros nos redujo considerablemente la cantidad de combinaciones a probar y el tiempo de computo. Sin embargo seguia siendo muy alto, motivo por el cual se nos ocurrió que en vez de jugar con un tablero de 7x6 y 4 en linea, podíamos acotarlo a un 3 en linea con un tablero de 6x5. Con la hipotesis de que si lograbamos tener un buen entrenamiento en un tablero mas chico y jugar 3 en linea podemos conseguir con los mismos parametros un buen entrenamiento para el juego 4 en linea.
+El armado de estos dos conjuntos de parametros nos redujo considerablemente la cantidad de combinaciones a probar y el tiempo de computo. Sin embargo seguia siendo muy alto, motivo por el cuál se nos ocurrió que en vez de jugar con un tablero de 7x6 y 4 en linea, podíamos acotarlo a un 3 en linea con un tablero de 6x5. Con la hipotesis de que si lograbamos tener un buen entrenamiento en un tablero mas chico y jugar 3 en linea podemos conseguir con los mismos parametros un buen entrenamiento para el juego 4 en linea.
 
 
 %La primer combinacion de parametros tardó aproximadamente 10 min en entrenar. Haciendo una proyeccion de cuanto podria tardar en total con todas las combinaciones tardaria aproximadamente 101 dias, otra señal de que teniamos que reducir la cantidad de combinaciones.
 
 \subsection{Experimento 3 en linea en tablero de $6\times5$}
 
-Para el set 1 obtuvimos que el jugador Qlearning ganaba el 89\% de las veces, mientras que para el set 2 ganaba el 93\% con los siguientes conjuntos de paramtros. 
+Para el Set 1 obtuvimos que el jugador QLearning ganaba el 89\% de las veces, mientras que para el Set 2 ganaba el 93\% con los siguientes conjuntos de paramtros. 
 
 \begin{center}
     \begin{tabular}{| l | l | l |}
@@ -66,16 +65,16 @@ Para el set 1 obtuvimos que el jugador Qlearning ganaba el 89\% de las veces, mi
 
 Lo que observamos es:
 \begin{itemize}
-\item El set 1 le da importancia a la exploración mientras que el set 2 no la utiliza. \\
-\item El set 1 usa poco la información reciente y el set 2 la utiliza mucho. \\
-\item El set 1 le da mucha importancia a las recompensas futuras mientras que el set 2 le da la misma importancia a ambas. \\
+\item El Set 1 le da importancia a la exploración mientras que el set 2 no la utiliza. \\
+\item El Set 1 usa poco la información reciente y el set 2 la utiliza mucho. \\
+\item El Set 1 le da mucha importancia a las recompensas futuras mientras que el Set 2 le da la misma importancia a ambas. \\
 \item En ambos casos es mejor aprender los valores de Q a travez del juego evitando tener una estrategia voraz.\\
 \end{itemize}
 
  
-Lo que nos llama la atención del Set 2 es que no utiliza exploración. Una vez que encuentra un camino lo utiliza. Asi que decidimos probar la combinación de los mejores parametros para ambos sets agregando valores de epsilon = $[$0.0, 0.0001, 0.001, 0.1$]$
+Lo que nos llamó la atención del Set 2 es que no utiliza exploración. Una vez que encuentra un camino lo utiliza. Asi que decidimos probar la combinación de los mejores parametros para ambos sets agregando valores de epsilon = $[$0.0, 0.0001, 0.001, 0.1$]$
 
-Se obtuvo el 95\% de los juegos ganados para los siguientes parametros:
+El jugador QLearning ganó el 95\% de las veces con los siguientes parametros:
 \begin{center}
     \begin{tabular}{| l | l | l |}
     \hline
@@ -130,10 +129,10 @@ A continuación podemos ver para los diferentes sets los porcetajes de victorias
 %\end{figure}
 %\end{frame}
 
-Lo que podemos observar es que efectivamente el jugador QLearning aprende, pues a medida que aumenta la cantidad de juegos gana mayor cantidad de partidas. Contrariamente al jugador random.  \\
+Observamos que efectivamente el jugador QLearner aprende, pues a medida que aumenta la cantidad de juegos gana mayor cantidad de partidas. Contrariamente al jugador random.  \\
 
 En los tres casos alrededor del orden de $10^{3}$ empieza a ganar el jugador entrenado. 
-Asi que decidimos jugar contra el jugador Q-learning entrenado para ver c\'omo estaba jugando. Y notamos dos comportamientos interesantes para contar.
+Asi que decidimos jugar contra él para ver c\'omo que tan bien jugaba. Y notamos dos comportamientos interesantes para contar.
 
 El primer escenario suced\'ia cuando estaba por perder. El turno es el del QLearner, y el otro jugador tiene dos posibles l\'ineas de tres para completar y ganar. Es decir, sin importar si el QLearner bloqueara alguna de las l\'ineas, el otro jugador ganar\'ia en el siguiente turno. La acci\'on que tomaba el QLearner era ignorar los dos bloques y formar una l\'inea de 2 con el objetivo que, suponemos, si el otro jugador se confunde, en el siguiente paso el QLeaerner pueda ganar.  
 
@@ -144,9 +143,9 @@ Nos pareci\'o muy llamativa este comportamiento que logr\'o el Qlearner, y lo to
 Y esto explicaría por que no empatan. Como el jugador que comienza tiene una estrategia ganadora siempre va a ganar.\\
 
 Todavía nos llama la atención el valor bajo que usa de exploración. El resto de los parametros nos parecieron bastante razonables en cuanto a balanceo de utilización de recompensas futuras y actuales, información reciente y futura e inicialización de Q.
-Para las siguientes pruebas utilzamos el set 3.\\
+Para las pruebas subsiguientes utilzamos el Set 3.\\
 
-Nos preguntamos que pasaría si poníamos a jugar a dos Qlearners. Lo que esperabamos ver es lo mismo que pasó cuando se juega contra un jugador random, es decir, en algun momento se encuentra la estrategia ganadora y ganará la partida el que la comienza.\\
+Nos preguntamos que pasaría si poníamos a jugar a dos Qlearners. Esperabamos ver un comportamiento similar al que tuvo cuando se jugó contra un jugador random, es decir, en algun momento se encuentra la estrategia ganadora y quien comience la partida ganará.\\
 
 A continuación mostramos los resultados de dos jugadores Qlearner para diferente número de iteraciones:
 
@@ -161,7 +160,7 @@ A continuación mostramos los resultados de dos jugadores Qlearner para diferent
  \begin{minipage}{.5\textwidth}
 	\centering
 	\includegraphics[scale=0.35]{img1/QlearningVsQlearning_600000_6x5_merge.png}
-        \caption{Qlearning vs Qlearning 1000000 juegos}
+        \caption{Qlearning vs Qlearning 600000 juegos}
   \end{minipage}
 \end{figure}
 
@@ -176,11 +175,11 @@ A continuación mostramos los resultados de dos jugadores Qlearner para diferent
   \end{minipage}
 \end{figure}
 
-Viendo los gráficos creímos que pasaba lo mismo que en el caso anterior. Al aprender una estrategia ganadora en algún momento ganaba siempre el jugador que comenzaba la partida. 
+Observando los gráficos creímos que pasaba lo mismo que en el caso anterior, cuando se aprendía la estrategia ganadora, quien comienza la partida gana. 
 
-Sin embargo quisimos ver que tan bien había aprendido y nos encontramos con que no aprendió una estrategia ganadora. Creemos que esto tiene que ver con que tener un oponente random hace que se exploren más opciones y por eso, si se utiliza un epsilon ``grande'' se convierte en ``demasiado'' random, pero si se tiene un oponente Qlearner tener un epsilon ``bajo'' lo convierte en ``poco'' random. \\
+Sin embargo, al jugar contra el Qlearner nos encontramos con que no aprendió una estrategia ganadora. Creemos que esto tiene que ver con que al tener un oponente random que realiza jugadas al azar fuerza a que se exploren más opciones al tratar de bloquearlo.  Esto explicaría porque al tener un oponente random un epsilon ``grande'' convierte al juego en ``demasiado'' random, pero si se tiene un oponente Qlearner tener un epsilon ``bajo'' lo convierte en ``poco'' random. \\
 
-Entonces nos prenguntamos que pasaría si entrenamos con dos jugadores Qlearners los mismos parametros que usamos anteriormente pero aumentando el epsilon. 
+Para tratar de chequear la hipotesis entrenamos con dos jugadores Qlearners los mismos parametros que usamos anteriormente pero aumentando el epsilon. 
 
 Y obtuvimos lo siguiente:
 
@@ -195,80 +194,96 @@ Y obtuvimos lo siguiente:
 \end{figure}
 
 
-Volvimos a jugar contra el jugador entrenado y observamos que ahora si aprendió la estrategia ganadora. Esto explica porque inicialmente cuando jugabamos contra un jugador random los mejores parametros siempre tenían un epsilon bajo, incluso cero. 
+Volvimos a jugar contra el jugador entrenado y observamos que ahora si aprendió la estrategia ganadora. Esto explicaría porque inicialmente cuando jugabamos contra un jugador random los mejores parametros siempre tenían un epsilon bajo, incluso cero. 
 
-Creemos que lo que explica que cuando tenemos dos jugadores Qlearners sin estrategia ganadora lleguen a que nunca se empate tiene que ver con que tener un conjunto grande de estados ganadores, hace que empatar sea dificil y sea mas probable que siempre alguno de los dos gane la partida incluso no conociendo una estrategia ganadora.\\
+Lo que todavía no respondimos es porque cuando se enfrentan dos Qlearners que no conocen la estrategia ganadora no llegan a empatar. Creemos que tiene que ver con que tener un conjunto grande de estados ganadores, hace que empatar sea dificil y sea mas probable que siempre alguno de los dos gane la partida incluso no conociendo una estrategia ganadora.\\
 
 
 
 \subsection{Experimento 4 en linea en tablero de $7\times6$}
-Hasta aca jugamos con un tablero de dimensión menor, así que queremos ver si nuestra teoría de que si tenemos un buen conjunto de parametros para el tablero mas chico y el juego tres en línea podemos utilizar el mismo para el juego 4 en linea y obtener buenos resulados.
+En la sección anterior jugamos con un tablero de dimensión menor a la del juego 4 en linea, así que queremos ver si nuestra teoría de que si tenemos un buen conjunto de parametros para el tablero mas chico y el juego tres en línea podemos utilizar los mismos para el juego 4 en linea y obtener buenos resultados.
 
 En esta seccion experimentamos con el tablero original de $7\times6$, y las reglas originales del 4 en linea, obteniendo los siguientes resultados:\\
 
-{\large ACA HAY QUE CORRER DE NUEVO ESTO, NO ME MATEN PERO LOS PARAMETROS FINALES 
-CUANDO SE JUEGA CONTRA RANDOM SON: \\
-epsilon=0.0001, learning\_rate=0.4, discount=0.9, initialQ=0.0 \\
-Y CUANDO SE JUEGA CONTRA OTRO QLEARNING:
-epsilon=0.1, learning\_rate=0.4, discount=0.9, initialQ=0.0 \\
 
-HAY QUE CORRER PARA 7x6 4 en linea: \\
-iteraciones 200000 para QLEARNING VS RANDOM
-iteraciones 200000 para QLEARNING VS QLEARNING
-iteraciones 600000 para QLEARNING VS QLEARNING
-iteraciones 1000000 para QLEARNING VS QLEARNING
+%{\large ACA HAY QUE CORRER DE NUEVO ESTO, NO ME MATEN PERO LOS PARAMETROS FINALES 
+%CUANDO SE JUEGA CONTRA RANDOM SON: \\
+%epsilon=0.0001, learning\_rate=0.4, discount=0.9, initialQ=0.0 \\
+%Y CUANDO SE JUEGA CONTRA OTRO QLEARNING:
+%epsilon=0.1, learning\_rate=0.4, discount=0.9, initialQ=0.0 \\
 
-SI LA ULTIMA NO ANDA NO PASA NADA. 
+%HAY QUE CORRER PARA 7x6 4 en linea: \\
+%iteraciones 200000 para QLEARNING VS RANDOM
+%iteraciones 200000 para QLEARNING VS QLEARNING
+%iteraciones 600000 para QLEARNING VS QLEARNING
+%iteraciones 1000000 para QLEARNING VS QLEARNING
 
-}
+%SI LA ULTIMA NO ANDA NO PASA NADA. 
+
+%}
 
 
 \begin{figure}[h]
  \centering
   \begin{minipage}[c]{1\textwidth}
 	\centering
-	\includegraphics[scale=0.5]{img/QlearningRandomEgreedy2000007x6(4).png}
+	\includegraphics[scale=0.5]{resultados/7x6/QlearningVsRandom_200000_7x6_parametros_informe.png}
         \caption{Qlearning vs Random 200000 juegos}
   \end{minipage}
 \end{figure}
 
-Lo que podemos observar es bastante razonable, como agrandamos el tablero tenemos muchas mas combinaciones, motivo por el cual, tarda mas tiempo en aprender como ganar.
-En este caso ya no encontramos estrategia ganadora para los mismos parametros que en 3 en linea.
+Lo que podemos observar es bastante razonable, como agrandamos el tablero tenemos muchas mas combinaciones, motivo por el cual, tarda mas tiempo en aprender a jugar bien.
+En este caso ya no encontramos estrategia ganadora.
 
-Tambien jugamos nosotros contra el Q-learning entrenado y los resultados fueron bastante pobres. 
+Tambien jugamos nosotros contra el Qlearning entrenado y los resultados fueron bastante pobres. 
+
+Como en el juego 3 en línea concluímos que a la hora de entrenar Qlearner VS Qlearner es necesario aumentar el epsilon corrimos con los mismos parametros que en Qlearner VS Random pero aumentamos el epsilon a 0.1. Y obtuvimos lo siguiente:
 
 \begin{figure}[h]
  \centering
  \begin{minipage}{.45\textwidth}
 	\centering
-	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy2000007x6(4).png}
+	\includegraphics[scale=0.35]{resultados/7x6/QlearningVsQlearning_200000_7x6_parametros_informe.png}
        \caption{Qlearning vs Qlearning 200000 juegos}
   \end{minipage}
-% \begin{minipage}{.5\textwidth}
-%	\centering
-%	\includegraphics[scale=0.35]{img/QlearningQlearningEgreedy1000000.png}
-%        \caption{Qlearning vs Qlearning 1000000 juegos}
-%  \end{minipage}
+ \begin{minipage}{.5\textwidth}
+	\centering
+	\includegraphics[scale=0.35]{resultados/7x6/QlearningVsQlearning_600000_7x6_parametros_informe.png}
+        \caption{Qlearning vs Qlearning 600000 juegos}
+  \end{minipage}
 \end{figure}
 
-No pudimos probar Qlearning Vs Qlearning con 9000000 juegos debido al tiempo de computo.
+\begin{figure}[h]
+ \centering
+ \begin{minipage}{.45\textwidth}
+  %\begin{minipage}[c]{1\textwidth}
+	\centering
+	\includegraphics[scale=0.35]{resultados/7x6/QlearningVsQlearning_1000000_7x6_parametros_informe.png}
+        \caption{Qlearning vs Qlearning 1000000 juegos}
+  \end{minipage}
+\end{figure}
+
+Se puede ver una tendencia a estabilizarse en que gana el 50\% de las veces cada jugador, sin embargo, no es del todo claro. En este caso el jugador entrenado tampoco aprende una estrategia ganadora. \\
+
+{\large FALTA VER QUE PASÓ ACA CON LOS ULTIMOS ENTRENADOS, PUSE ALGO PERO ES INVENTO}
+
+
+Encontramos que el juego cuatro en línea tiene solución y que con un juego perfecto , el primer jugador puede forzar una victoria, comenzando en la columna central. Por este motivo creemos que sería interesante poder entrenar con muchas mas jugadas y una politica de control como softmax. Que nos ayudaría a ajustar mejor el epsilon a medida que entrenamos. Dejamos estas pruebas en el tintero por cuestiones de tiempo.
+
+%Asi que pensamos en probar otra politica de control: softmax.
+
+%Otra vez necesitamos buscar los parametros. En este caso necesitamos definir un tau y una funcion de decremento ademas de textit{learning rate}, \textit{discount}, cantidad de epocas, y los valores de inicializacion de Q. Para estos ultimos exploramos valores que se encontraban alrededor de los encontrados para la estrategia e-greedy.
+%Empezamos con el tabler de 6x5 y 3 fichas y una vez encontrado los parametros pasamos al tablero real.
 
 
 
-Asi que pensamos en probar otra politica de control: softmax.
-
-Otra vez necesitamos buscar los parametros. En este caso necesitamos definir un tau y una funcion de decremento ademas de textit{learning rate}, \textit{discount}, cantidad de epocas, y los valores de inicializacion de Q. Para estos ultimos exploramos valores que se encontraban alrededor de los encontrados para la estrategia e-greedy.
-Empezamos con el tabler de 6x5 y 3 fichas y una vez encontrado los parametros pasamos al tablero real.
-
+%{\huge FALTARIA QUE FUNCIONE SOFTMAX Y VER QUE DA. 
+%LA TEORIA SERIA QUE TIENE QUE SER UN POCO MAS INTELIGENTE PORQUE YA VIMOS QUE LA EXPLORACION LO CAMBIA TODO. 
+%}\\
 
 
-{\huge FALTARIA QUE FUNCIONE SOFTMAX Y VER QUE DA. 
-LA TEORIA SERIA QUE TIENE QUE SER UN POCO MAS INTELIGENTE PORQUE YA VIMOS QUE LA EXPLORACION LO CAMBIA TODO. 
-}\\
-
-
-{\huge FALTAN CONCLUSIONES
-}\\
+%{\huge FALTAN CONCLUSIONES
+%}\\
 
 
 {\huge SI ALGUIEN SABE COMO HACER PARA QUE RESPETE EL LUGAR DE LOS GRAFICOS GENIAL PORQUE AHORA LOS MEZCLA CON EL TEXTO Y QUEDAN MAL LAS EXPLICACIONES
