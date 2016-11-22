@@ -1,6 +1,16 @@
 \newpage
 \section{Conclusiones y discusión}
 
-Pudimos ver como efectivamente el algortimo es capaz de aprender a jugar, y bajo ciertas condiciones (como jugar 3 en línea en un tablero menor) lo hace de un modo muy eficiente.
+Pudimos ver como efectivamente el algortimo es capaz de aprender a jugar, y bajo ciertas condiciones de juego (como jugar 3 en línea en un tablero de $6\times5$) lo hace de un modo muy eficiente encontrando una estrategia ganadora.
+Pero no solo el tamaño del juego es importante a la hora entrenar a una agente, sino que tambien los parámetros elegidos para el algoritmo que utilizan (Qlearning) tienen un peso significativo. Esto lo pudimos ver reflejado por ejemplo con el epsilon elegido, ya que al usar un epsilon bajo y no fomentar la exploracion del agente, observamos que este no logra encontrar una estrategia ganadora para 3 en línea, mientras que con un epsilon un poco mas alto es posible encontrarla para el mismo agente. \\
 
-Pero no solo el tamaño del juego es importante, tambien los parametros elegidos, pues pudimos ver, como con un "mal" epsilon no se encuentra una estrategia ganadora para 3 en línea. Elegir una buena politica de control es fundamental. 
+Otro aspecto importante para destacar es que también tiene mucha importancia quien es el jugador que comienza jugando, ya que pudimos notar que en muchos de los casos en los que comenzaba jugando nuestro agente ganaba, mientras que en un mismo escenario (con los mismos parametros de entrenamiento) en el que jugaba segundo terminaba perdiendo. Esto se debe a que la estrategia ganadora que encuentra no falla para el caso en el que comienza jugando. \\
+
+Con respecto a los tipos de entrenamiento, es decir, contra un jugador random o contra otro agente que tambien utilize qlearning, podemos concluir que nuestro agente entrena mejor contra el random. Esto tiene sentido ya que al ser un oponente aleatorio y jugar en una posición random, nuestro agente se ve forzado a explorar nuevos caminos para poder ganarle y ser recompensado. En cambio, si juega contra otro Qlearning que tambien aprende logra aprender la estrategia ganadora, ambos jugaran de la misma manera para maximizar su recompensa y la exploración será menor para ambos.\\
+
+
+\todo{Ver este parrafo que es medio humo}\\
+Sobre los restantes parametros utilizados en la politica epsilon greedy, como son el learning\_rate y el discount podemos concluir que dio mejor resultado mantener una politica conservadora para el caso de learning rate, es decir mantenerlo en valores medios, mientras que para el caso del discount conviene setearlo en valores altos. En el caso del learning\_rate esto significó que el agente aprenda de un modo equilibrado entre la experiencia pasada y presente, sin preferenciar ninguna de las dos, mientras que el discount significá que le dará mas importancia a las recompensas futuras. Esto tiene sentido en el 4 en línea ya que es al terminar el juego que se sabe quien gano y puede ser recompensado el agente.
+
+\todo{Hablar algo de la politica epsilon greedy, no se me ocurre mucho que poner ademas de lo que ya esta puesto}\\
+Con respecto a la politicas
