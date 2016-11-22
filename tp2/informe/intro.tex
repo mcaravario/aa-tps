@@ -7,6 +7,23 @@ lo indica. Una diferencia importante, la cual impactó en la experimentación de
 es que el ta-te-ti se juega en un tablero de $3\times3$, mientras que el 4 en linea en uno de $7\times6$.
 Debido a las similitudes y diferencias de los tipos de juego, decidimos plantear una serie de experimentos acordes a la capacidad de computo soportada
 por nuestras computadoras.
+
+
+\section{Instrucciones de uso}
+Para poder jugar contra el mejor agente obtenido, basta con correr desde una consola el siguiente comando:
+\begin{verbatim}
+  python 4enlinea.py
+\end{verbatim}
+En caso de querer entrenar un agente para posteriormente guardarlo en un archivo .pickle y poder jugar cuando quiera sin necesidad
+de entrenarlo nuevamente, se debe correr desde una terminal el archivo seguido del parametro -save
+\begin{verbatim}
+  python 4enlinea.py -save
+\end{verbatim}
+Finalmente, si se desea recrear la experimentación realizada en el trabajo, mediante la tecnica de GridSearch, con los parámetros mencionados
+posteriormente deberá correrse desde una terminal el mismo comando seguido del parametro -experis de la siguiente forma:
+\begin{verbatim}
+  python 4enlinea.py -experis
+\end{verbatim}
 %
 % Primeros test:
 %
