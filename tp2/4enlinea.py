@@ -178,40 +178,39 @@ class QLearningPlayer(Player):
         actions = self.available_moves(board)
         qs = [self.getQ(self.last_board, a) for a in actions]
 
-        if (self.softmax):
-            #### SOFTMAX
+        # if (self.softmax):
+        #     #### SOFTMAX
+        #
+        #     s = sum([np.exp(q/self.tau) for q in qs])
+        #     probs = [np.exp(q/self.tau)/s for q in qs]
+        #     maximos = []
+        #     ### Actualizar tau
+        #     if(self.f_decaimiento(self.tau, self.iterations) < 0.1):
+        #         m = np.max(probs)
+        #         for i in range(0,len(probs)-1):
+        #             if(probs[i] == m):
+        #                 maximos.append(i)
+        #         i = random.choice(maximos)
+        #         global count
+        #         print count
+        #     else:
+        #         self.tau = self.f_decaimiento(self.tau, self.iterations)
+        #         i = np.random.choice(len(qs), p=probs)
+        #         global count
+        #         count += 1
 
-            s = sum([np.exp(q/self.tau) for q in qs])
-            probs = [np.exp(q/self.tau)/s for q in qs]
-            maximos = []
-            ### Actualizar tau
-            if(self.f_decaimiento(self.tau, self.iterations) < 0.1):
-                m = np.max(probs)
-                for i in range(0,len(probs)-1):
-                    if(probs[i] == m):
-                        maximos.append(i)
-                i = random.choice(maximos)
-                global count
-                print count
-            else:
-                self.tau = self.f_decaimiento(self.tau, self.iterations)
-                i = np.random.choice(len(qs), p=probs)
-                global count
-                count += 1
+        ##### EPSILON GREEEDY
+        if random.random() < self.epsilon: # explore!
+            self.last_move = random.choice(actions)
+            return self.last_move
 
+        maxQ = max(qs)
+        if qs.count(maxQ) > 1:
+            # more than 1 best option; choose among them randomly
+            best_options = [i for i in range(len(actions)) if qs[i] == maxQ]
+            i = random.choice(best_options)
         else:
-            ##### EPSILON GREEEDY
-            if random.random() < self.epsilon: # explore!
-                self.last_move = random.choice(actions)
-                return self.last_move
-
-            maxQ = max(qs)
-            if qs.count(maxQ) > 1:
-                # more than 1 best option; choose among them randomly
-                best_options = [i for i in range(len(actions)) if qs[i] == maxQ]
-                i = random.choice(best_options)
-            else:
-                i = qs.index(maxQ)
+            i = qs.index(maxQ)
 
         self.last_move = actions[i]
         return actions[i]
@@ -242,7 +241,7 @@ def gridSeach(param_grid):
         p2 = RandomPlayer()
 
         print "{0}\r".format(j),
-        sys.stdout.flush() 
+        sys.stdout.flush()
 
         p1_wins = 0
         for i in xrange(1,200001):
