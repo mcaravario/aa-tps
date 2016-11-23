@@ -184,7 +184,7 @@ A continuación mostramos los resultados de dos jugadores Qlearner para diferent
 Observando los gráficos creímos que pasaba lo mismo que en el caso anterior, es decir que llegado el punto en que se aprendía la estrategia ganadora, quien comienza la partida será el ganador.
 
 Sin embargo, al jugar contra el Qlearner nos encontramos con que no aprendió una estrategia ganadora. Creemos que esto se debe a que al tener un oponente random que realiza jugadas al azar fuerza a que se exploren más opciones de juego con el objetivo de bloquearlo.
-Esto explicaría por que al tener un oponente random con un epsilon ``grande'' convierte al juego en ``demasiado'' random, pero si se tiene un oponente Qlearner, tener un epsilon ``bajo'' lo convierte en ``poco'' random. \\
+Esto explicaría por que al tener un oponente random con un epsilon ``grande'' convierte al juego en ``demasiado'' exploratorio, pero si se tiene un oponente Qlearner, tener un epsilon ``bajo'' lo convierte en ``poco'' exploratorio. \\
 
 Para tratar de corroborar nuestra hipotesis entrenamos con dos jugadores Qlearners los mismos parámetros que usamos anteriormente pero aumentando el $\epsilon$.
 Obteniendo los siguientes resultados:
@@ -271,7 +271,6 @@ experimentamos usando los mismos parámetros que contra el jugador random, con l
 
 Se puede ver una tendencia a estabilizarse en que gana el 50\% de las veces cada jugador, sin embargo, esto no es del todo claro. Tambien notamos que en este caso el jugador entrenado tampoco aprende una estrategia ganadora. \\
 
-\todo{FALTA VER QUE PASÓ ACA CON LOS ULTIMOS ENTRENADOS, PUSE ALGO PERO ES INVENTO}
 
 Encontramos que el juego cuatro en línea tiene solución y que con un juego perfecto , el primer jugador puede forzar una victoria, comenzando a jugar en la columna central. Por este motivo creemos que sería interesante poder entrenar con muchas mas jugadas y una politica de control como softmax, la cual nos ayudaría a ajustar mejor el epsilon a medida que entrenamos. Estas pruebas no pudieron ser realizadas por cuestiones de tiempo, por lo que consideramos que sería un buen punto a experimentar en investigaciones futuras.
 
